@@ -65,9 +65,7 @@ class _ButtonsState extends State<Buttons> with SingleTickerProviderStateMixin {
                 } else {
                   widget.start();
                 }
-                setState(() {
-                  _isRunning = !_isRunning;
-                });
+                setState(() => _isRunning = !_isRunning);
               },
             ),
           ),

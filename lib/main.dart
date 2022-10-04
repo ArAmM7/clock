@@ -11,10 +11,7 @@ import 'package:stopwatch_app/screens/stopwatch_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     DevicePreview(
       enabled: kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux,
@@ -33,7 +30,6 @@ class MyApp extends StatelessWidget {
       child: CupertinoApp(
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),
-        debugShowCheckedModeBanner: false,
         theme: const CupertinoThemeData(brightness: Brightness.dark),
         home: const MyHomePage(),
       ),
