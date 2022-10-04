@@ -25,35 +25,37 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Stopwatch>(
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Card(
-            color: CupertinoColors.black,
-            child: DotsIndicator(
-                decorator: const DotsDecorator(
-                  color: CupertinoColors.systemGrey, // Inactive color
-                  activeColor: CupertinoColors.white,
-                ),
-                dotsCount: 2,
-                position: _currentPage,
-                onTap: (position) {
-                  controller.animateToPage(position.toInt(),
-                      duration: const Duration(milliseconds: 320), curve: Curves.easeInOut);
-                  setState(() => _currentPage = position);
-                }),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Card(
+          color: CupertinoColors.black,
+          child: DotsIndicator(
+            decorator: const DotsDecorator(
+              color: CupertinoColors.systemGrey, // Inactive color
+              activeColor: CupertinoColors.white,
+            ),
+            dotsCount: 2,
+            position: _currentPage,
+            onTap: (position) {
+              controller.animateToPage(position.toInt(),
+                  duration: const Duration(milliseconds: 320), curve: Curves.easeInOut);
+              setState(() => _currentPage = position);
+            },
           ),
         ),
-        builder: (context, stopwatch, child) {
-          return CupertinoPageScaffold(
-            key: const ValueKey('Scaffold'),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16, left: 16, bottom: 4),
-                    child: AspectRatio(
-                      aspectRatio: 0.85,
-                      child: LayoutBuilder(builder: (context, constraints) {
+      ),
+      builder: (context, stopwatch, child) {
+        return CupertinoPageScaffold(
+          key: const ValueKey('Scaffold'),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16, bottom: 4),
+                  child: AspectRatio(
+                    aspectRatio: 0.85,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
                         final radius = min(constraints.maxWidth / 2, constraints.maxHeight / 2);
                         final radiusSmall =
                             min(constraints.maxWidth / 7, constraints.maxHeight / 7);
@@ -120,20 +122,22 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                             ),
                           ],
                         );
-                      }),
+                      },
                     ),
                   ),
-                  child!,
-                  LapsList(
-                    elapsed: stopwatch.elapsed,
-                    elapsedLaps: stopwatch.elapsedLaps,
-                    laps: stopwatch.laps,
-                    fastestAndSlowestLapIds: stopwatch.fastestAndSlowestLapIds,
-                  ),
-                ],
-              ),
+                ),
+                child!,
+                LapsList(
+                  elapsed: stopwatch.elapsed,
+                  elapsedLaps: stopwatch.elapsedLaps,
+                  laps: stopwatch.laps,
+                  fastestAndSlowestLapIds: stopwatch.fastestAndSlowestLapIds,
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
