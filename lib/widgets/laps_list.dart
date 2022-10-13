@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:stopwatch_app/models/lap.dart';
 import 'package:stopwatch_app/widgets/digital/elapsed_time_text.dart';
 
-
 class LapsList extends StatelessWidget {
   final List<Lap> laps;
   final Duration elapsed;

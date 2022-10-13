@@ -1,5 +1,4 @@
 import 'package:flutter/Cupertino.dart';
-
 import 'package:stopwatch_app/widgets/analog/clock_markers.dart';
 
 class AnalogStopwatchFace extends StatelessWidget {

@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/Cupertino.dart';
-
 import 'package:stopwatch_app/widgets/analog/analog_stopwatch_face.dart';
-import 'package:stopwatch_app/widgets/digital/elapsed_time_text.dart';
 import 'package:stopwatch_app/widgets/analog/clock_hand.dart';
+import 'package:stopwatch_app/widgets/digital/elapsed_time_text.dart';
 
 class AnalogStopwatch extends StatelessWidget {
   final double radius;
