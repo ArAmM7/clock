@@ -12,14 +12,12 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
   Computed<ObservableSet<String>>? _$fastestAndSlowestLapIdsComputed;
 
   @override
-  ObservableSet<String> get fastestAndSlowestLapIds =>
-      (_$fastestAndSlowestLapIdsComputed ??= Computed<ObservableSet<String>>(
-              () => super.fastestAndSlowestLapIds,
+  ObservableSet<String> get fastestAndSlowestLapIds => (_$fastestAndSlowestLapIdsComputed ??=
+          Computed<ObservableSet<String>>(() => super.fastestAndSlowestLapIds,
               name: '_StopwatchStore.fastestAndSlowestLapIds'))
-          .value;
+      .value;
 
-  late final _$elapsedAtom =
-      Atom(name: '_StopwatchStore.elapsed', context: context);
+  late final _$elapsedAtom = Atom(name: '_StopwatchStore.elapsed', context: context);
 
   @override
   Duration get elapsed {
@@ -49,8 +47,7 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
     });
   }
 
-  late final _$elapsedLapsAtom =
-      Atom(name: '_StopwatchStore.elapsedLaps', context: context);
+  late final _$elapsedLapsAtom = Atom(name: '_StopwatchStore.elapsedLaps', context: context);
 
   @override
   Duration get elapsedLaps {
@@ -70,8 +67,8 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
 
   @override
   void startOrStop() {
-    final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.startOrStop');
+    final _$actionInfo =
+        _$_StopwatchStoreActionController.startAction(name: '_StopwatchStore.startOrStop');
     try {
       return super.startOrStop();
     } finally {
@@ -81,8 +78,8 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
 
   @override
   void lapOrReset() {
-    final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.lapOrReset');
+    final _$actionInfo =
+        _$_StopwatchStoreActionController.startAction(name: '_StopwatchStore.lapOrReset');
     try {
       return super.lapOrReset();
     } finally {

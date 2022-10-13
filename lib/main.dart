@@ -4,7 +4,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/Cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';import 'package:stopwatch_app/stores/stopwatch.dart';
+import 'package:get_it/get_it.dart';
+import 'package:stopwatch_app/stores/stopwatch.dart';
 import 'package:stopwatch_app/views/stopwatch_view.dart';
 
 GetIt getIt = GetIt.instance;

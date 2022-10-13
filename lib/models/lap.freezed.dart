@@ -30,8 +30,7 @@ mixin _$Lap {
 
 /// @nodoc
 abstract class $LapCopyWith<$Res> {
-  factory $LapCopyWith(Lap value, $Res Function(Lap) then) =
-      _$LapCopyWithImpl<$Res>;
+  factory $LapCopyWith(Lap value, $Res Function(Lap) then) = _$LapCopyWithImpl<$Res>;
   $Res call({String id, Duration duration});
 }
 
@@ -63,15 +62,13 @@ class _$LapCopyWithImpl<$Res> implements $LapCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
-  factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) =
-      __$$_LapCopyWithImpl<$Res>;
+  factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) = __$$_LapCopyWithImpl<$Res>;
   @override
   $Res call({String id, Duration duration});
 }
 
 /// @nodoc
-class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res>
-    implements _$$_LapCopyWith<$Res> {
+class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res> implements _$$_LapCopyWith<$Res> {
   __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then)
       : super(_value, (v) => _then(v as _$_Lap));
 
@@ -124,15 +121,12 @@ class _$_Lap implements _Lap {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(duration));
 
   @JsonKey(ignore: true)
   @override
-  _$$_LapCopyWith<_$_Lap> get copyWith =>
-      __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
+  _$$_LapCopyWith<_$_Lap> get copyWith => __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -143,8 +137,7 @@ class _$_Lap implements _Lap {
 }
 
 abstract class _Lap implements Lap {
-  const factory _Lap(
-      {required final String id, required final Duration duration}) = _$_Lap;
+  const factory _Lap({required final String id, required final Duration duration}) = _$_Lap;
 
   factory _Lap.fromJson(Map<String, dynamic> json) = _$_Lap.fromJson;
 
