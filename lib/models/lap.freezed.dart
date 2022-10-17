@@ -21,71 +21,78 @@ Lap _$LapFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Lap {
   String get id => throw _privateConstructorUsedError;
+
   Duration get duration => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $LapCopyWith<Lap> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LapCopyWith<$Res> {
-  factory $LapCopyWith(Lap value, $Res Function(Lap) then) = _$LapCopyWithImpl<$Res>;
+  factory $LapCopyWith(Lap value, $Res Function(Lap) then) = _$LapCopyWithImpl<$Res, Lap>;
+
+  @useResult
   $Res call({String id, Duration duration});
 }
 
 /// @nodoc
-class _$LapCopyWithImpl<$Res> implements $LapCopyWith<$Res> {
+class _$LapCopyWithImpl<$Res, $Val extends Lap> implements $LapCopyWith<$Res> {
   _$LapCopyWithImpl(this._value, this._then);
 
-  final Lap _value;
   // ignore: unused_field
-  final $Res Function(Lap) _then;
+  final $Val _value;
 
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? duration = freezed,
+    Object? id = null,
+    Object? duration = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as Duration,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
   factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) = __$$_LapCopyWithImpl<$Res>;
+
   @override
+  @useResult
   $Res call({String id, Duration duration});
 }
 
 /// @nodoc
-class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res> implements _$$_LapCopyWith<$Res> {
-  __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then)
-      : super(_value, (v) => _then(v as _$_Lap));
+class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$_Lap>
+    implements _$$_LapCopyWith<$Res> {
+  __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then) : super(_value, _then);
 
-  @override
-  _$_Lap get _value => super._value as _$_Lap;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? duration = freezed,
+    Object? id = null,
+    Object? duration = null,
   }) {
     return _then(_$_Lap(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as Duration,
@@ -115,17 +122,17 @@ class _$_Lap implements _Lap {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Lap &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.duration, duration));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.duration, duration) || other.duration == duration));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(duration));
+  int get hashCode => Object.hash(runtimeType, id, duration);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LapCopyWith<_$_Lap> get copyWith => __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
 
   @override
@@ -143,8 +150,10 @@ abstract class _Lap implements Lap {
 
   @override
   String get id;
+
   @override
   Duration get duration;
+
   @override
   @JsonKey(ignore: true)
   _$$_LapCopyWith<_$_Lap> get copyWith => throw _privateConstructorUsedError;

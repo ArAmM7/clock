@@ -21,6 +21,7 @@ class LapsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         child: laps.isNotEmpty
             ? CupertinoFormSection(
                 children: [

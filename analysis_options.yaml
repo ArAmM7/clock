@@ -29,5 +29,11 @@ linter:
       avoid_as: true
       always_use_package_imports: true
 
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+analyzer:
+  exclude:
+    - '**.freezed.dart'
+    - '**.g.dart'

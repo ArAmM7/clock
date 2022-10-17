@@ -30,6 +30,9 @@ abstract class _StopwatchStore with Store {
   @observable
   Duration elapsedLaps = Duration.zero;
 
+  @observable
+  bool isRunning = false;
+
   @computed
   ObservableSet<String> get fastestAndSlowestLapIds {
     if (laps.length < 3) {
@@ -44,16 +47,18 @@ abstract class _StopwatchStore with Store {
 
   @action
   void startOrStop() {
-    if (!_timer.isActive) {
+    if (!isRunning && !_timer.isActive) {
       start();
+      isRunning = true;
     } else {
       stop();
+      isRunning = false;
     }
   }
 
   @action
   void lapOrReset() {
-    if (_timer.isActive) {
+    if (_timer.isActive && isRunning) {
       lap();
     } else {
       reset();
