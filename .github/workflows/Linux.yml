@@ -10,13 +10,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       - run: sudo apt-get update -y
       - run: sudo apt-get install -y ninja-build clang libgtk-3-dev --fix-missing
+      - run: flutter doctor -v
       - run: flutter build linux --release
