@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/Cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';

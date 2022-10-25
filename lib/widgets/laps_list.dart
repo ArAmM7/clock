@@ -1,4 +1,4 @@
-import 'package:flutter/Cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stopwatch_app/models/lap.dart';
 import 'package:stopwatch_app/widgets/digital/elapsed_time_text.dart';
