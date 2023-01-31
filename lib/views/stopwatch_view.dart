@@ -3,20 +3,43 @@ import 'dart:math';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
-import 'package:stopwatch_app/stores/pages.dart';
-import 'package:stopwatch_app/stores/stopwatch.dart';
-import 'package:stopwatch_app/widgets/analog/analog_stopwatch.dart';
-import 'package:stopwatch_app/widgets/buttons/buttons.dart';
-import 'package:stopwatch_app/widgets/digital/elapsed_time_text.dart';
-import 'package:stopwatch_app/widgets/laps_list.dart';
 
-class StopwatchView extends StatelessWidget {
+import '../constants/stopwatch_category.dart';
+import '../store/stopwatch/stopwatch.dart';
+import '../widgets/analog/analog_stopwatch.dart';
+import '../widgets/buttons/buttons.dart';
+import '../widgets/digital/elapsed_time_text.dart';
+import '../widgets/laps_list.dart';
+
+class StopwatchView extends HookWidget {
   const StopwatchView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final stopwatchState = useMemoized(StopwatchStore.new);
+    final _pageController = usePageController();
+    final _currentPage = useState(0);
+
+    final _onTap = useCallback<Function(double)>(
+      (position) {
+        _pageController.animateToPage(
+          position.toInt(),
+          duration: const Duration(milliseconds: 320),
+          curve: Curves.easeInOut,
+        );
+      },
+      [],
+    );
+
+    final _onPageChanged = useCallback<Function(int)>(
+      (pos) {
+        _currentPage.value = pos;
+      },
+      [],
+    );
+
     return CupertinoPageScaffold(
       key: const ValueKey('Scaffold'),
       child: SafeArea(
@@ -35,14 +58,15 @@ class StopwatchView extends StatelessWidget {
                         Observer(
                           builder: (context) {
                             return PageView(
-                              onPageChanged: (val) =>
-                                  GetIt.I<PagesStore>().changeCurrentPage(val.toDouble()),
-                              controller: GetIt.I<PagesStore>().controller,
+                              onPageChanged: _onPageChanged,
+                              controller: _pageController,
                               children: [
                                 Center(
-                                  child: ElapsedTimeText(
-                                    size: radius * 3,
-                                    elapsed: GetIt.I<StopwatchStore>().elapsed,
+                                  child: RepaintBoundary(
+                                    child: ElapsedTimeText(
+                                      size: radius * 3,
+                                      elapsed: stopwatchState.elapsed,
+                                    ),
                                   ),
                                 ),
                                 Stack(
@@ -53,36 +77,36 @@ class StopwatchView extends StatelessWidget {
                                       child: SizedBox(
                                         width: radius * 2,
                                         height: radius * 2,
-                                        child: RepaintBoundary(
-                                          child: AnalogStopwatch(
-                                            key: const ValueKey('AnalogStopwatchMinutes'),
-                                            radius: radiusSmall,
-                                            numOfTicks: 30,
-                                            cat: Category.minutes,
-                                            elapsed: GetIt.I<StopwatchStore>().elapsed,
+                                        child: AnalogStopwatch(
+                                          key: const ValueKey(
+                                            'AnalogStopwatchMinutes',
                                           ),
+                                          radius: radiusSmall,
+                                          numOfTicks: 30,
+                                          cat: Category.minutes,
+                                          elapsed: stopwatchState.elapsed,
                                         ),
                                       ),
                                     ),
-                                    RepaintBoundary(
-                                      child: AnalogStopwatch(
-                                        key: const ValueKey('AnalogStopwatchRegular'),
+                                    AnalogStopwatch(
+                                      key: const ValueKey(
+                                        'AnalogStopwatchRegular',
+                                      ),
+                                      radius: radius,
+                                      numOfTicks: 60,
+                                      cat: Category.regular,
+                                      elapsed: stopwatchState.elapsed,
+                                    ),
+                                    if (stopwatchState.laps.length > 1)
+                                      AnalogStopwatch(
+                                        key: const ValueKey(
+                                          'AnalogStopwatchLap',
+                                        ),
                                         radius: radius,
                                         numOfTicks: 60,
-                                        cat: Category.regular,
-                                        elapsed: GetIt.I<StopwatchStore>().elapsed,
-                                      ),
-                                    ),
-                                    if (GetIt.I<StopwatchStore>().laps.length > 1)
-                                      RepaintBoundary(
-                                        child: AnalogStopwatch(
-                                          key: const ValueKey('AnalogStopwatchLap'),
-                                          radius: radius,
-                                          numOfTicks: 60,
-                                          cat: Category.lap,
-                                          elapsed: GetIt.I<StopwatchStore>().elapsed,
-                                          elapsedLaps: GetIt.I<StopwatchStore>().elapsedLaps,
-                                        ),
+                                        cat: Category.lap,
+                                        elapsed: stopwatchState.elapsed,
+                                        elapsedLaps: stopwatchState.elapsedLaps,
                                       ),
                                   ],
                                 ),
@@ -93,6 +117,7 @@ class StopwatchView extends StatelessWidget {
                         Buttons(
                           key: const ValueKey('Buttons'),
                           radius: radius,
+                          state: stopwatchState,
                         ),
                       ],
                     );
@@ -104,33 +129,25 @@ class StopwatchView extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Card(
                 color: CupertinoColors.black,
-                child: Observer(
-                  builder: (context) => DotsIndicator(
-                    decorator: const DotsDecorator(
-                      color: CupertinoColors.systemGrey, // Inactive color
-                      activeColor: CupertinoColors.white,
-                    ),
-                    dotsCount: 2,
-                    position: GetIt.I<PagesStore>().currentPage,
-                    onTap: (position) {
-                      GetIt.I<PagesStore>().controller.animateToPage(
-                            position.toInt(),
-                            duration: const Duration(milliseconds: 320),
-                            curve: Curves.easeInOut,
-                          );
-                      GetIt.I<PagesStore>().changeCurrentPage(position);
-                    },
+                child: DotsIndicator(
+                  decorator: const DotsDecorator(
+                    color: CupertinoColors.systemGrey, // Inactive color
+                    activeColor: CupertinoColors.white,
                   ),
+                  dotsCount: 2,
+                  position: _currentPage.value.toDouble(),
+                  onTap: _onTap,
                 ),
               ),
             ),
             Observer(
               builder: (context) {
                 return LapsList(
-                  elapsed: GetIt.I<StopwatchStore>().elapsed,
-                  elapsedLaps: GetIt.I<StopwatchStore>().elapsedLaps,
-                  laps: GetIt.I<StopwatchStore>().laps,
-                  fastestAndSlowestLapIds: GetIt.I<StopwatchStore>().fastestAndSlowestLapIds,
+                  elapsed: stopwatchState.elapsed,
+                  elapsedLaps: stopwatchState.elapsedLaps,
+                  laps: stopwatchState.laps,
+                  fastestAndSlowestLapIds:
+                      stopwatchState.fastestAndSlowestLapIds,
                 );
               },
             ),

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ResetButton extends StatelessWidget {
+class ResetButton extends HookWidget {
   final bool isRunning;
   final VoidCallback? onPressed;
 
-  const ResetButton({Key? key, this.onPressed, required this.isRunning}) : super(key: key);
+  const ResetButton({
+    super.key,
+    this.onPressed,
+    required this.isRunning,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +19,12 @@ class ResetButton extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           child: Align(
-            alignment: Alignment.center,
             child: Text(
               isRunning ? 'Lap' : 'Reset',
-              style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

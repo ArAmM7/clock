@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
-import 'package:stopwatch_app/stores/stopwatch.dart';
-import 'package:stopwatch_app/widgets/buttons/reset_lap_button.dart';
-import 'package:stopwatch_app/widgets/buttons/start_stop_button.dart';
 
-class Buttons extends StatelessWidget {
-  Buttons({super.key, required this.radius});
+import '../../store/stopwatch/stopwatch.dart';
+import 'reset_lap_button.dart';
+import 'start_stop_button.dart';
+
+class Buttons extends HookWidget {
+  const Buttons({
+    super.key,
+    required this.radius,
+    required this.state,
+  });
 
   final double radius;
-  final GetIt getIt = GetIt.instance;
+  final StopwatchStore state;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,8 @@ class Buttons extends StatelessWidget {
             height: radius / 2.2,
             child: Observer(
               builder: (context) => ResetButton(
-                onPressed: getIt<StopwatchStore>().lapOrReset,
-                isRunning: getIt<StopwatchStore>().isRunning,
+                onPressed: state.lapOrReset,
+                isRunning: state.isRunning,
               ),
             ),
           ),
@@ -35,8 +40,8 @@ class Buttons extends StatelessWidget {
             height: radius / 2.2,
             child: Observer(
               builder: (context) => StartStopButton(
-                isRunning: getIt<StopwatchStore>().isRunning,
-                onPressed: () => getIt<StopwatchStore>().startOrStop(),
+                isRunning: state.isRunning,
+                onPressed: state.startOrStop,
               ),
             ),
           ),

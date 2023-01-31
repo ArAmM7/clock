@@ -81,6 +81,22 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
     });
   }
 
+  late final _$lapAsyncAction =
+      AsyncAction('_StopwatchStore.lap', context: context);
+
+  @override
+  Future<void> lap() {
+    return _$lapAsyncAction.run(() => super.lap());
+  }
+
+  late final _$resetAsyncAction =
+      AsyncAction('_StopwatchStore.reset', context: context);
+
+  @override
+  Future<void> reset() {
+    return _$resetAsyncAction.run(() => super.reset());
+  }
+
   late final _$_StopwatchStoreActionController =
       ActionController(name: '_StopwatchStore', context: context);
 
@@ -101,6 +117,28 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
         name: '_StopwatchStore.lapOrReset');
     try {
       return super.lapOrReset();
+    } finally {
+      _$_StopwatchStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void start() {
+    final _$actionInfo = _$_StopwatchStoreActionController.startAction(
+        name: '_StopwatchStore.start');
+    try {
+      return super.start();
+    } finally {
+      _$_StopwatchStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void stop() {
+    final _$actionInfo = _$_StopwatchStoreActionController.startAction(
+        name: '_StopwatchStore.stop');
+    try {
+      return super.stop();
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }

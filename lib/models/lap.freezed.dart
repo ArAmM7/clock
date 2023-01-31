@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lap.dart';
 
@@ -21,18 +21,17 @@ Lap _$LapFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Lap {
   String get id => throw _privateConstructorUsedError;
-
   Duration get duration => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LapCopyWith<Lap> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LapCopyWith<$Res> {
-  factory $LapCopyWith(Lap value, $Res Function(Lap) then) = _$LapCopyWithImpl<$Res, Lap>;
+  factory $LapCopyWith(Lap value, $Res Function(Lap) then) =
+      _$LapCopyWithImpl<$Res, Lap>;
 
   @useResult
   $Res call({String id, Duration duration});
@@ -44,7 +43,6 @@ class _$LapCopyWithImpl<$Res, $Val extends Lap> implements $LapCopyWith<$Res> {
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -69,7 +67,8 @@ class _$LapCopyWithImpl<$Res, $Val extends Lap> implements $LapCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
-  factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) = __$$_LapCopyWithImpl<$Res>;
+  factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) =
+      __$$_LapCopyWithImpl<$Res>;
 
   @override
   @useResult
@@ -79,7 +78,8 @@ abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
 /// @nodoc
 class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$_Lap>
     implements _$$_LapCopyWith<$Res> {
-  __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then) : super(_value, _then);
+  __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -123,7 +123,8 @@ class _$_Lap implements _Lap {
         (other.runtimeType == runtimeType &&
             other is _$_Lap &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.duration, duration) || other.duration == duration));
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @JsonKey(ignore: true)
@@ -133,7 +134,8 @@ class _$_Lap implements _Lap {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LapCopyWith<_$_Lap> get copyWith => __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
+  _$$_LapCopyWith<_$_Lap> get copyWith =>
+      __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -144,7 +146,8 @@ class _$_Lap implements _Lap {
 }
 
 abstract class _Lap implements Lap {
-  const factory _Lap({required final String id, required final Duration duration}) = _$_Lap;
+  const factory _Lap(
+      {required final String id, required final Duration duration}) = _$_Lap;
 
   factory _Lap.fromJson(Map<String, dynamic> json) = _$_Lap.fromJson;
 

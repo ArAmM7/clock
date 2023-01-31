@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class StartStopButton extends StatelessWidget {
+class StartStopButton extends HookWidget {
   final bool isRunning;
   final VoidCallback? onPressed;
 
-  const StartStopButton({Key? key, required this.isRunning, this.onPressed}) : super(key: key);
+  const StartStopButton({
+    super.key,
+    required this.isRunning,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ClipOval(
       child: Material(
-        color: isRunning ? Colors.red.withOpacity(0.25) : Colors.green.withOpacity(0.25),
+        color: isRunning
+            ? Colors.red.withOpacity(0.25)
+            : Colors.green.withOpacity(0.25),
         child: InkWell(
           onTap: onPressed,
           child: Align(
-            alignment: Alignment.center,
             child: Text(
               isRunning ? 'Stop' : 'Start',
               style: TextStyle(

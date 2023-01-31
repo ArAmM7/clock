@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ElapsedTimeText extends StatelessWidget {
+import 'time_digit.dart';
+
+class ElapsedTimeText extends HookWidget {
   final Duration elapsed;
   final double size;
   final Color color;
 
   const ElapsedTimeText({
-    Key? key,
+    super.key,
     required this.elapsed,
     required this.size,
     this.color = CupertinoColors.white,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,28 +36,6 @@ class ElapsedTimeText extends StatelessWidget {
         TimeDigit(hundredsStr.substring(0, 1), width: digitWidth, size: size, color: color),
         TimeDigit(hundredsStr.substring(1, 2), width: digitWidth, size: size, color: color),
       ],
-    );
-  }
-}
-
-class TimeDigit extends StatelessWidget {
-  const TimeDigit(this.text,
-      {Key? key, required this.width, required this.size, required this.color})
-      : super(key: key);
-  final String text;
-  final double width;
-  final double size;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Text(
-        text,
-        style: TextStyle(fontSize: size / 7, color: color),
-        textAlign: TextAlign.center,
-      ),
     );
   }
 }

@@ -4,31 +4,23 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
-import 'package:stopwatch_app/stores/pages.dart';
-import 'package:stopwatch_app/stores/stopwatch.dart';
-import 'package:stopwatch_app/views/stopwatch_view.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+
+import 'views/stopwatch_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  GetIt.I.registerSingleton<StopwatchStore>(
-    StopwatchStore(),
-    signalsReady: true,
-  );
-  GetIt.I.registerSingleton<PagesStore>(
-    PagesStore(),
-    signalsReady: true,
-  );
   runApp(
     DevicePreview(
-      enabled: kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux,
+      enabled:
+          kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux,
       builder: (context) => const MyApp(), // Wrap your app
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   const MyApp({super.key});
 
   @override

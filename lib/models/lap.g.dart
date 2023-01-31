@@ -6,7 +6,7 @@ part of 'lap.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Lap _$$_LapFromJson(Map<String, dynamic> json) => _$_Lap(
+_$_Lap _$$_LapFromJson(Map json) => _$_Lap(
       id: json['id'] as String,
       duration: Duration(microseconds: json['duration'] as int),
     );
