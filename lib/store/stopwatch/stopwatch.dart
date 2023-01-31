@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:mobx/mobx.dart';
-import 'package:stopwatch_app/models/lap.dart';
+
+import '../../models/lap.dart';
 
 part 'stopwatch.g.dart';
 
@@ -38,10 +39,11 @@ abstract class _StopwatchStore with Store {
     if (laps.length < 3) {
       return ObservableSet.of({'1', '2'});
     }
-    List<Lap> sortedLaps = laps.toList(growable: false);
-    sortedLaps.sort(
-      (a, b) => a.duration.compareTo(b.duration),
-    );
+    final sortedLaps = laps.toList(growable: false)
+      ..sort(
+        (a, b) => a.duration.compareTo(b.duration),
+      );
+
     return ObservableSet.of({sortedLaps[1].id, sortedLaps.last.id});
   }
 
@@ -65,10 +67,11 @@ abstract class _StopwatchStore with Store {
     }
   }
 
+  @action
   void start() {
     _initialTime = DateTime.now();
     _timer = Timer.periodic(
-      const Duration(milliseconds: 64),
+      const Duration(milliseconds: 8),
       (timer) {
         _currentlyElapsed = DateTime.now().difference(_initialTime);
         elapsed = _currentlyElapsed + _previouslyElapsed;
@@ -79,12 +82,14 @@ abstract class _StopwatchStore with Store {
     }
   }
 
+  @action
   void stop() {
     _timer.cancel();
     _previouslyElapsed += _currentlyElapsed;
     _currentlyElapsed = Duration.zero;
   }
 
+  @action
   Future<void> lap() async {
     laps.insert(
       laps.isEmpty ? 0 : laps.length - 1,
@@ -96,6 +101,7 @@ abstract class _StopwatchStore with Store {
     elapsedLaps = elapsed;
   }
 
+  @action
   Future<void> reset() async {
     _timer.cancel();
     _previouslyElapsed = Duration.zero;
