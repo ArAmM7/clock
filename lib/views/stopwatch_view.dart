@@ -46,13 +46,19 @@ class StopwatchView extends HookWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 16, left: 16, bottom: 4),
+              padding: const EdgeInsets.only(bottom: 4),
               child: AspectRatio(
                 aspectRatio: 0.85,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    final radius = min(constraints.maxWidth / 2, constraints.maxHeight / 2);
-                    final radiusSmall = min(constraints.maxWidth / 7, constraints.maxHeight / 7);
+                    final radius = min(
+                      constraints.maxWidth / 2,
+                      constraints.maxHeight / 2,
+                    );
+                    final radiusSmall = min(
+                      constraints.maxWidth / 7,
+                      constraints.maxHeight / 7,
+                    );
                     return Stack(
                       children: [
                         Observer(
@@ -61,11 +67,16 @@ class StopwatchView extends HookWidget {
                               onPageChanged: _onPageChanged,
                               controller: _pageController,
                               children: [
-                                Center(
-                                  child: RepaintBoundary(
-                                    child: ElapsedTimeText(
-                                      size: radius * 3,
-                                      elapsed: stopwatchState.elapsed,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
+                                  child: Center(
+                                    child: RepaintBoundary(
+                                      child: ElapsedTimeText(
+                                        size: radius * 3,
+                                        elapsed: stopwatchState.elapsed,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -114,10 +125,13 @@ class StopwatchView extends HookWidget {
                             );
                           },
                         ),
-                        Buttons(
-                          key: const ValueKey('Buttons'),
-                          radius: radius,
-                          state: stopwatchState,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Buttons(
+                            key: const ValueKey('Buttons'),
+                            radius: radius,
+                            state: stopwatchState,
+                          ),
                         ),
                       ],
                     );
