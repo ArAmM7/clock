@@ -6,9 +6,8 @@ on:
     types: [ completed ]
 
 jobs:
-  notify:
+  build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: send telegram message on success
         uses: appleboy/telegram-action@v0.1.1
