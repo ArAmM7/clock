@@ -31,6 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.fvm/
 
 # Symbolication related
 app.*.symbols
@@ -42,8 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-
-##ignore genereated files
-#*.g.dart
-#*.freezed.dart
