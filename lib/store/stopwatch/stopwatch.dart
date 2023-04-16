@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:mobx/mobx.dart';
 
 import '../../models/lap.dart';
+import '../../utils/storage_util.dart';
 
 part 'stopwatch.g.dart';
 
@@ -15,6 +16,7 @@ abstract class _StopwatchStore with Store {
       Duration.zero,
       () {},
     );
+    _init();
   }
 
   late Timer _timer;
@@ -41,21 +43,37 @@ abstract class _StopwatchStore with Store {
     }
     final sortedLaps = laps.toList(growable: false)
       ..sort(
-        (a, b) => a.duration.compareTo(b.duration),
+        (a, b) => a.duration.compareTo(
+          b.duration,
+        ),
       );
 
-    return ObservableSet.of({sortedLaps[1].id, sortedLaps.last.id});
+    return ObservableSet.of({
+      sortedLaps[1].id,
+      sortedLaps.last.id,
+    });
+  }
+
+  Future<void> _init() async {
+    final x = await StorageUtils.getInitialTime();
+    if (x != null) {
+      _initialTime = x;
+    }
+    isRunning = await StorageUtils.getIsRunning();
+    stop();
+    if (isRunning) {
+      start();
+    }
   }
 
   @action
   void startOrStop() {
     if (!isRunning && !_timer.isActive) {
       start();
-      isRunning = true;
     } else {
       stop();
-      isRunning = false;
     }
+    StorageUtils.setIsRunning(isRunning);
   }
 
   @action
@@ -69,6 +87,7 @@ abstract class _StopwatchStore with Store {
 
   @action
   void start() {
+    isRunning = true;
     _initialTime = DateTime.now();
     _timer = Timer.periodic(
       const Duration(milliseconds: 8),
@@ -80,10 +99,12 @@ abstract class _StopwatchStore with Store {
     if (laps.isEmpty) {
       lap();
     }
+    StorageUtils.setInitialTime(_initialTime);
   }
 
   @action
   void stop() {
+    isRunning = false;
     _timer.cancel();
     _previouslyElapsed += _currentlyElapsed;
     _currentlyElapsed = Duration.zero;

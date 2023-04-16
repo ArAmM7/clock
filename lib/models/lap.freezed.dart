@@ -32,7 +32,6 @@ mixin _$Lap {
 abstract class $LapCopyWith<$Res> {
   factory $LapCopyWith(Lap value, $Res Function(Lap) then) =
       _$LapCopyWithImpl<$Res, Lap>;
-
   @useResult
   $Res call({String id, Duration duration});
 }
@@ -69,7 +68,6 @@ class _$LapCopyWithImpl<$Res, $Val extends Lap> implements $LapCopyWith<$Res> {
 abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
   factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) =
       __$$_LapCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String id, Duration duration});
@@ -153,10 +151,8 @@ abstract class _Lap implements Lap {
 
   @override
   String get id;
-
   @override
   Duration get duration;
-
   @override
   @JsonKey(ignore: true)
   _$$_LapCopyWith<_$_Lap> get copyWith => throw _privateConstructorUsedError;
