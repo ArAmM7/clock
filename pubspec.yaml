@@ -49,6 +49,7 @@ dependencies:
   shared_preferences: ^2.2.1
   flutter_scale_tap: ^1.0.5
   uuid: ^4.0.0
+  gap: ^3.0.1
 
 
 dev_dependencies:
