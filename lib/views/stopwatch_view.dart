@@ -22,10 +22,10 @@ class StopwatchView extends HookWidget {
     final _pageController = usePageController();
     final _currentPage = useState(0);
 
-    final _onTap = useCallback<Function(double)>(
+    final _onTap = useCallback<Function(int)>(
       (position) {
         _pageController.animateToPage(
-          position.toInt(),
+          position,
           duration: const Duration(milliseconds: 320),
           curve: Curves.easeInOut,
         );
@@ -149,7 +149,7 @@ class StopwatchView extends HookWidget {
                     activeColor: CupertinoColors.white,
                   ),
                   dotsCount: 2,
-                  position: _currentPage.value.toDouble(),
+                  position: _currentPage.value,
                   onTap: _onTap,
                 ),
               ),
