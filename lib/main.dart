@@ -26,7 +26,6 @@ class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       theme: const CupertinoThemeData(brightness: Brightness.dark),
       home: const StopwatchView(),
