@@ -11,9 +11,7 @@ import '../models/list/list_dto.dart';
 class Preferences {
   static const initialTime = 'initialTime';
   static const isRunning = 'isRunning';
-  static const elapsedLaps = 'userStatus';
   static const laps = 'laps';
-  static const elapsed = 'elapsed';
 
   Preferences._();
 }

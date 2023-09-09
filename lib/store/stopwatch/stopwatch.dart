@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:mobx/mobx.dart';
 
@@ -163,10 +162,7 @@ abstract class _StopwatchStore with Store {
       ),
       reaction(
         (_) => _laps.iterator,
-        (newVal) {
-          StorageUtils.setLaps(_laps);
-          log(_laps.toString(), name: '_laps reaction');
-        },
+        (_) => StorageUtils.setLaps(_laps),
       ),
     ];
   }
