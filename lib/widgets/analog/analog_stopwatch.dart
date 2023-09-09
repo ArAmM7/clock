@@ -1,14 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../constants/stopwatch_category.dart';
 import '../digital/elapsed_time_text.dart';
 import 'analog_stopwatch_face.dart';
 import 'clock_hand.dart';
 
-class AnalogStopwatch extends HookWidget {
+class AnalogStopwatch extends StatelessWidget {
   final double radius;
   final int numOfTicks;
   final Category cat;

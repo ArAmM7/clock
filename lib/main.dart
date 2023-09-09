@@ -25,10 +25,9 @@ class MyApp extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      locale: DevicePreview.locale(context),
-      theme: const CupertinoThemeData(brightness: Brightness.dark),
-      home: const StopwatchView(),
+    return const CupertinoApp(
+      theme: CupertinoThemeData(brightness: Brightness.dark),
+      home: StopwatchView(),
     );
   }
 }

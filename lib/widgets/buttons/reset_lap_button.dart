@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 
-class ResetButton extends HookWidget {
+class ResetButton extends StatelessWidget {
   final bool isRunning;
   final VoidCallback? onPressed;
 
@@ -13,11 +13,11 @@ class ResetButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Material(
-        color: Colors.grey.withAlpha(64), // button color
-        child: InkWell(
-          onTap: onPressed,
+    return ScaleTap(
+      onPressed: onPressed,
+      child: ClipOval(
+        child: Material(
+          color: Colors.grey.withAlpha(64),
           child: Align(
             child: Text(
               isRunning ? 'Lap' : 'Reset',

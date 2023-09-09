@@ -11,6 +11,8 @@ analyzer:
   errors:
     invalid_assignment: error
     duplicate_import: error
+    unused_import: error
+    unused_local_variable: error
     dead_code: error
     avoid_print: error
     cancel_subscriptions: error

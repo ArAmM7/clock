@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 
-class StartStopButton extends HookWidget {
+class StartStopButton extends StatelessWidget {
   final bool isRunning;
   final VoidCallback? onPressed;
 
@@ -13,13 +13,13 @@ class StartStopButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Material(
-        color: isRunning
-            ? Colors.red.withOpacity(0.25)
-            : Colors.green.withOpacity(0.25),
-        child: InkWell(
-          onTap: onPressed,
+    return ScaleTap(
+      onPressed: onPressed,
+      child: ClipOval(
+        child: Material(
+          color: isRunning
+              ? Colors.red.withOpacity(0.25)
+              : Colors.green.withOpacity(0.25),
           child: Align(
             child: Text(
               isRunning ? 'Stop' : 'Start',
