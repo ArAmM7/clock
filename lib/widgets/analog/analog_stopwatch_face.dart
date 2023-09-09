@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'clock_text_marker.dart';
 import 'clock_tick_marker.dart';
 
-class AnalogStopwatchFace extends HookWidget {
+class AnalogStopwatchFace extends StatelessWidget {
   final double radius;
   final int numOfTicks;
 

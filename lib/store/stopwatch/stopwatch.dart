@@ -1,7 +1,9 @@
 import 'dart:async';
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:mobx/mobx.dart';
+
+import 'package:uuid/uuid.dart';
 
 import '../../models/lap/lap.dart';
 import '../../utils/storage_util.dart';
@@ -20,28 +22,32 @@ abstract class _StopwatchStore with Store {
   }
 
   late Timer _timer;
+  final _uuid = const Uuid();
+  @readonly
   DateTime _initialTime = DateTime.now();
   Duration _previouslyElapsed = Duration.zero;
   Duration _currentlyElapsed = Duration.zero;
+  List<ReactionDisposer>? _disposers;
 
-  @observable
-  Duration elapsed = Duration.zero;
+  @readonly
+  Duration _elapsed = Duration.zero;
 
-  @observable
-  ObservableList<Lap> laps = ObservableList.of(<Lap>[]);
+  @readonly
+  // ignore: prefer_final_fields
+  ObservableList<Lap> _laps = <Lap>[].asObservable();
 
-  @observable
-  Duration elapsedLaps = Duration.zero;
+  @readonly
+  Duration _elapsedLaps = Duration.zero;
 
-  @observable
-  bool isRunning = false;
+  @readonly
+  bool _isRunning = false;
 
   @computed
   ObservableSet<String> get fastestAndSlowestLapIds {
-    if (laps.length < 3) {
+    if (_laps.length < 3) {
       return ObservableSet.of({'1', '2'});
     }
-    final sortedLaps = laps.toList(growable: false)
+    final sortedLaps = _laps.toList(growable: false)
       ..sort(
         (a, b) => a.duration.compareTo(
           b.duration,
@@ -54,81 +60,123 @@ abstract class _StopwatchStore with Store {
     });
   }
 
+  @action
   Future<void> _init() async {
     final x = await StorageUtils.getInitialTime();
     if (x != null) {
       _initialTime = x;
     }
-    isRunning = await StorageUtils.getIsRunning();
-    stop();
-    if (isRunning) {
-      start();
+    _isRunning = await StorageUtils.getIsRunning();
+    _laps = (await StorageUtils.getLaps()).asObservable();
+    if (_isRunning) {
+      _resume();
     }
+    _setupReactions();
   }
 
-  @action
   void startOrStop() {
-    if (!isRunning && !_timer.isActive) {
-      start();
+    if (!_isRunning && !_timer.isActive) {
+      _start();
     } else {
-      stop();
+      _stop();
     }
-    StorageUtils.setIsRunning(isRunning);
   }
 
-  @action
   void lapOrReset() {
-    if (_timer.isActive && isRunning) {
-      lap();
+    if (_timer.isActive && _isRunning) {
+      _lap();
     } else {
-      reset();
+      _reset();
     }
   }
 
   @action
-  void start() {
-    isRunning = true;
+  void _start() {
+    _isRunning = true;
     _initialTime = DateTime.now();
-    _timer = Timer.periodic(
-      const Duration(milliseconds: 8),
-      (timer) {
-        _currentlyElapsed = DateTime.now().difference(_initialTime);
-        elapsed = _currentlyElapsed + _previouslyElapsed;
-      },
-    );
-    if (laps.isEmpty) {
-      lap();
+    _startTimer();
+    if (_laps.isEmpty) {
+      _lap();
     }
-    StorageUtils.setInitialTime(_initialTime);
   }
 
   @action
-  void stop() {
-    isRunning = false;
+  void _stop() {
+    _isRunning = false;
     _timer.cancel();
     _previouslyElapsed += _currentlyElapsed;
     _currentlyElapsed = Duration.zero;
   }
 
   @action
-  Future<void> lap() async {
-    laps.insert(
-      laps.isEmpty ? 0 : laps.length - 1,
-      Lap(
-        id: DateTime.now().toIso8601String() + Random().nextInt(420).toString(),
-        duration: elapsed - elapsedLaps,
-      ),
+  void _resume() {
+    _startTimer();
+    if (_laps.isEmpty) {
+      _lap();
+    }
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(
+      const Duration(milliseconds: 16),
+      _timerCallback,
     );
-    elapsedLaps = elapsed;
   }
 
   @action
-  Future<void> reset() async {
+  void _timerCallback(_) {
+    _currentlyElapsed = DateTime.now().difference(_initialTime);
+    _elapsed = _currentlyElapsed + _previouslyElapsed;
+  }
+
+  @action
+  Future<void> _lap() async {
+    _laps.insert(
+      _laps.isEmpty ? 0 : _laps.length - 1,
+      Lap(
+        id: _uuid.v4(),
+        duration: _elapsed - _elapsedLaps,
+      ),
+    );
+    _elapsedLaps = _elapsed;
+  }
+
+  @action
+  Future<void> _reset() async {
     _timer.cancel();
     _previouslyElapsed = Duration.zero;
     _currentlyElapsed = Duration.zero;
-    laps.clear();
-    elapsedLaps = Duration.zero;
-    elapsed = Duration.zero;
+    _laps.clear();
+    _elapsedLaps = Duration.zero;
+    _elapsed = Duration.zero;
+  }
+
+  void _setupReactions() {
+    _disposers = [
+      reaction(
+        (_) => _isRunning,
+        StorageUtils.setIsRunning,
+      ),
+      reaction(
+        (_) => _initialTime,
+        StorageUtils.setInitialTime,
+      ),
+      reaction(
+        (_) => _laps.iterator,
+        (newVal) {
+          StorageUtils.setLaps(_laps);
+          log(_laps.toString(), name: '_laps reaction');
+        },
+      ),
+    ];
+  }
+
+  void dispose() {
+    if (_disposers == null) {
+      return;
+    }
+    for (final d in _disposers!) {
+      d();
+    }
   }
 }

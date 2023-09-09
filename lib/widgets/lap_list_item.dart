@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'digital/elapsed_time_text.dart';
 
-class LapListItem extends HookWidget {
+class LapListItem extends StatelessWidget {
   const LapListItem({
     super.key,
     required this.lapNumber,

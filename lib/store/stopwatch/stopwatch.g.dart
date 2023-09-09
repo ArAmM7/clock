@@ -18,127 +18,162 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
               name: '_StopwatchStore.fastestAndSlowestLapIds'))
           .value;
 
-  late final _$elapsedAtom =
-      Atom(name: '_StopwatchStore.elapsed', context: context);
+  late final _$_initialTimeAtom =
+      Atom(name: '_StopwatchStore._initialTime', context: context);
+
+  DateTime get initialTime {
+    _$_initialTimeAtom.reportRead();
+    return super._initialTime;
+  }
 
   @override
+  DateTime get _initialTime => initialTime;
+
+  @override
+  set _initialTime(DateTime value) {
+    _$_initialTimeAtom.reportWrite(value, super._initialTime, () {
+      super._initialTime = value;
+    });
+  }
+
+  late final _$_elapsedAtom =
+      Atom(name: '_StopwatchStore._elapsed', context: context);
+
   Duration get elapsed {
-    _$elapsedAtom.reportRead();
-    return super.elapsed;
+    _$_elapsedAtom.reportRead();
+    return super._elapsed;
   }
 
   @override
-  set elapsed(Duration value) {
-    _$elapsedAtom.reportWrite(value, super.elapsed, () {
-      super.elapsed = value;
+  Duration get _elapsed => elapsed;
+
+  @override
+  set _elapsed(Duration value) {
+    _$_elapsedAtom.reportWrite(value, super._elapsed, () {
+      super._elapsed = value;
     });
   }
 
-  late final _$lapsAtom = Atom(name: '_StopwatchStore.laps', context: context);
+  late final _$_lapsAtom =
+      Atom(name: '_StopwatchStore._laps', context: context);
 
-  @override
   ObservableList<Lap> get laps {
-    _$lapsAtom.reportRead();
-    return super.laps;
+    _$_lapsAtom.reportRead();
+    return super._laps;
   }
 
   @override
-  set laps(ObservableList<Lap> value) {
-    _$lapsAtom.reportWrite(value, super.laps, () {
-      super.laps = value;
+  ObservableList<Lap> get _laps => laps;
+
+  @override
+  set _laps(ObservableList<Lap> value) {
+    _$_lapsAtom.reportWrite(value, super._laps, () {
+      super._laps = value;
     });
   }
 
-  late final _$elapsedLapsAtom =
-      Atom(name: '_StopwatchStore.elapsedLaps', context: context);
+  late final _$_elapsedLapsAtom =
+      Atom(name: '_StopwatchStore._elapsedLaps', context: context);
 
-  @override
   Duration get elapsedLaps {
-    _$elapsedLapsAtom.reportRead();
-    return super.elapsedLaps;
+    _$_elapsedLapsAtom.reportRead();
+    return super._elapsedLaps;
   }
 
   @override
-  set elapsedLaps(Duration value) {
-    _$elapsedLapsAtom.reportWrite(value, super.elapsedLaps, () {
-      super.elapsedLaps = value;
+  Duration get _elapsedLaps => elapsedLaps;
+
+  @override
+  set _elapsedLaps(Duration value) {
+    _$_elapsedLapsAtom.reportWrite(value, super._elapsedLaps, () {
+      super._elapsedLaps = value;
     });
   }
 
-  late final _$isRunningAtom =
-      Atom(name: '_StopwatchStore.isRunning', context: context);
+  late final _$_isRunningAtom =
+      Atom(name: '_StopwatchStore._isRunning', context: context);
 
-  @override
   bool get isRunning {
-    _$isRunningAtom.reportRead();
-    return super.isRunning;
+    _$_isRunningAtom.reportRead();
+    return super._isRunning;
   }
 
   @override
-  set isRunning(bool value) {
-    _$isRunningAtom.reportWrite(value, super.isRunning, () {
-      super.isRunning = value;
+  bool get _isRunning => isRunning;
+
+  @override
+  set _isRunning(bool value) {
+    _$_isRunningAtom.reportWrite(value, super._isRunning, () {
+      super._isRunning = value;
     });
   }
 
-  late final _$lapAsyncAction =
-      AsyncAction('_StopwatchStore.lap', context: context);
+  late final _$_initAsyncAction =
+      AsyncAction('_StopwatchStore._init', context: context);
 
   @override
-  Future<void> lap() {
-    return _$lapAsyncAction.run(() => super.lap());
+  Future<void> _init() {
+    return _$_initAsyncAction.run(() => super._init());
   }
 
-  late final _$resetAsyncAction =
-      AsyncAction('_StopwatchStore.reset', context: context);
+  late final _$_lapAsyncAction =
+      AsyncAction('_StopwatchStore._lap', context: context);
 
   @override
-  Future<void> reset() {
-    return _$resetAsyncAction.run(() => super.reset());
+  Future<void> _lap() {
+    return _$_lapAsyncAction.run(() => super._lap());
+  }
+
+  late final _$_resetAsyncAction =
+      AsyncAction('_StopwatchStore._reset', context: context);
+
+  @override
+  Future<void> _reset() {
+    return _$_resetAsyncAction.run(() => super._reset());
   }
 
   late final _$_StopwatchStoreActionController =
       ActionController(name: '_StopwatchStore', context: context);
 
   @override
-  void startOrStop() {
+  void _start() {
     final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.startOrStop');
+        name: '_StopwatchStore._start');
     try {
-      return super.startOrStop();
+      return super._start();
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void lapOrReset() {
+  void _stop() {
     final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.lapOrReset');
+        name: '_StopwatchStore._stop');
     try {
-      return super.lapOrReset();
+      return super._stop();
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void start() {
+  void _resume() {
     final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.start');
+        name: '_StopwatchStore._resume');
     try {
-      return super.start();
+      return super._resume();
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void stop() {
+  void _timerCallback(dynamic _) {
     final _$actionInfo = _$_StopwatchStoreActionController.startAction(
-        name: '_StopwatchStore.stop');
+        name: '_StopwatchStore._timerCallback');
     try {
-      return super.stop();
+      return super._timerCallback(_);
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }
@@ -147,10 +182,6 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
   @override
   String toString() {
     return '''
-elapsed: ${elapsed},
-laps: ${laps},
-elapsedLaps: ${elapsedLaps},
-isRunning: ${isRunning},
 fastestAndSlowestLapIds: ${fastestAndSlowestLapIds}
     ''';
   }

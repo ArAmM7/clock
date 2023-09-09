@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../store/stopwatch/stopwatch.dart';
 import 'reset_lap_button.dart';
 import 'start_stop_button.dart';
 
-class Buttons extends HookWidget {
+class Buttons extends StatelessWidget {
   const Buttons({
     super.key,
     required this.radius,

@@ -17,8 +17,8 @@ class ClockTickMarker extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = log(radius * 0.15);
-    final height = 5 * log(radius * 0.2);
+    final width = useMemoized(() => log(radius * 0.15));
+    final height = useMemoized(() => 5 * log(radius * 0.2));
 
     return Transform(
       alignment: Alignment.center,

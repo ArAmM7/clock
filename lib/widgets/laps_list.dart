@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../models/lap/lap.dart';
 import 'lap_list_item.dart';
 
-class LapsList extends HookWidget {
+class LapsList extends StatelessWidget {
   final List<Lap> laps;
   final Duration elapsed;
   final Duration elapsedLaps;

@@ -17,8 +17,8 @@ class ClockTextMarker extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = 12 * log(radius * 0.5);
-    final height = 10 * log(radius * 0.2);
+    final width = useMemoized(() => 12 * log(radius * 0.5));
+    final height = useMemoized(() => 10 * log(radius * 0.2));
 
     return Transform(
       alignment: Alignment.center,

@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../constants/stopwatch_category.dart';
+import '../store/slider_state/slider_state.dart';
 import '../store/stopwatch/stopwatch.dart';
 import '../widgets/analog/analog_stopwatch.dart';
 import '../widgets/buttons/buttons.dart';
@@ -20,7 +21,7 @@ class StopwatchView extends HookWidget {
   Widget build(BuildContext context) {
     final stopwatchState = useMemoized(StopwatchStore.new);
     final _pageController = usePageController();
-    final _currentPage = useState(0);
+    final _sliderState = useMemoized(SliderState.new);
 
     final _onTap = useCallback<Function(int)>(
       (position) {
@@ -35,10 +36,11 @@ class StopwatchView extends HookWidget {
 
     final _onPageChanged = useCallback<Function(int)>(
       (pos) {
-        _currentPage.value = pos;
+        _sliderState.currentIndex = pos;
       },
-      [],
     );
+
+    useEffect(() => stopwatchState.dispose);
 
     return CupertinoPageScaffold(
       key: const ValueKey('Scaffold'),
@@ -143,14 +145,18 @@ class StopwatchView extends HookWidget {
               alignment: Alignment.bottomCenter,
               child: Card(
                 color: CupertinoColors.black,
-                child: DotsIndicator(
-                  decorator: const DotsDecorator(
-                    color: CupertinoColors.systemGrey, // Inactive color
-                    activeColor: CupertinoColors.white,
-                  ),
-                  dotsCount: 2,
-                  position: _currentPage.value,
-                  onTap: _onTap,
+                child: Observer(
+                  builder: (context) {
+                    return DotsIndicator(
+                      decorator: const DotsDecorator(
+                        color: CupertinoColors.systemGrey, // Inactive color
+                        activeColor: CupertinoColors.white,
+                      ),
+                      dotsCount: 2,
+                      position: _sliderState.currentIndex,
+                      onTap: _onTap,
+                    );
+                  },
                 ),
               ),
             ),

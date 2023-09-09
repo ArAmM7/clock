@@ -47,6 +47,8 @@ dependencies:
   flutter_hooks: ^0.20.1
   get_storage: ^2.1.1
   shared_preferences: ^2.2.1
+  flutter_scale_tap: ^1.0.5
+  uuid: ^4.0.0
 
 
 dev_dependencies:
