@@ -46,7 +46,7 @@ dependencies:
   json_annotation: ^4.8.1
   flutter_hooks: ^0.20.1
   get_storage: ^2.1.1
-  shared_preferences: ^2.1.0
+  shared_preferences: ^2.2.1
 
 
 dev_dependencies:

@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:mobx/mobx.dart';
 
-import '../../models/lap.dart';
+import '../../models/lap/lap.dart';
 import '../../utils/storage_util.dart';
 
 part 'stopwatch.g.dart';
