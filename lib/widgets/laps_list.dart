@@ -1,54 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../models/lap/lap.dart';
+import '../extensions/extensions.dart';
+import '../store/stopwatch/stopwatch.dart';
 import 'lap_list_item.dart';
 
 class LapsList extends StatelessWidget {
-  final List<Lap> laps;
-  final Duration elapsed;
-  final Duration elapsedLaps;
-  final Set<String> fastestAndSlowestLapIds;
-
   const LapsList({
     super.key,
-    required this.laps,
-    required this.elapsed,
-    required this.elapsedLaps,
-    required this.fastestAndSlowestLapIds,
+    required this.stopwatchState,
   });
+
+  final StopwatchStore stopwatchState;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
+    return Observer(
+      builder: (_) => ListView.separated(
+        padding: EdgeInsets.only(bottom: context.bottomPadding),
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
-        child: laps.isNotEmpty
-            ? CupertinoFormSection(
-                children: [
-                  for (var index = laps.length - 1; index >= 0; index--)
-                    index == laps.length - 1
-                        ? LapListItem(
-                            key: ValueKey(laps[index].id),
-                            lapNumber: index + 1,
-                            lapDuration: elapsed - elapsedLaps,
-                          )
-                        : LapListItem(
-                            key: ValueKey(laps[index].id),
-                            lapNumber: index + 1,
-                            lapDuration: laps[index].duration,
-                            isFastest: laps[index].id ==
-                                    fastestAndSlowestLapIds.first &&
-                                laps.length > 2,
-                            isSlowest: laps[index].id ==
-                                    fastestAndSlowestLapIds.last &&
-                                laps.length > 2,
-                          ),
-                ],
-              )
-            : Divider(color: Colors.grey.shade800, indent: 16, endIndent: 16),
+        clipBehavior: Clip.antiAlias,
+        itemCount: stopwatchState.laps.length,
+        itemBuilder: (_, i) => Observer(
+          builder: (_) {
+            final index = stopwatchState.laps.length - 1 - i;
+            return LapListItem(
+              key: ValueKey(stopwatchState.laps[index].id),
+              lapNumber: index + 1,
+              lapDuration: index == stopwatchState.laps.length - 1
+                  ? stopwatchState.elapsed - stopwatchState.elapsedLaps
+                  : stopwatchState.laps[index].duration,
+              isFastest: stopwatchState.laps[index].id ==
+                      stopwatchState.fastestAndSlowestLapIds.first &&
+                  stopwatchState.laps.length > 2,
+              isSlowest: stopwatchState.laps[index].id ==
+                      stopwatchState.fastestAndSlowestLapIds.last &&
+                  stopwatchState.laps.length > 2,
+            );
+          },
+        ),
+        separatorBuilder: (_, __) =>
+            Divider(color: Colors.grey.shade800, indent: 16, endIndent: 16),
       ),
     );
   }

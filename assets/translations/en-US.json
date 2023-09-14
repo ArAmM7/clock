@@ -1,0 +1,19 @@
+{
+  "keywords": {
+    "next": "Next",
+    "skip": "Skip",
+    "cancel": "Cancel",
+    "signOut": "Sign out",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "Ok",
+    "start":"Start",
+    "stop":"Stop",
+    "reset":"Reset",
+    "lap":"Lap"
+  },
+  "dashboardPagesEnum":{
+    "STOPWATCH":"Stopwatch"
+  }
+}

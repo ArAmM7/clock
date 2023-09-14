@@ -124,14 +124,6 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
     return _$_lapAsyncAction.run(() => super._lap());
   }
 
-  late final _$_resetAsyncAction =
-      AsyncAction('_StopwatchStore._reset', context: context);
-
-  @override
-  Future<void> _reset() {
-    return _$_resetAsyncAction.run(() => super._reset());
-  }
-
   late final _$_StopwatchStoreActionController =
       ActionController(name: '_StopwatchStore', context: context);
 
@@ -174,6 +166,17 @@ mixin _$StopwatchStore on _StopwatchStore, Store {
         name: '_StopwatchStore._timerCallback');
     try {
       return super._timerCallback(_);
+    } finally {
+      _$_StopwatchStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<void> _reset() {
+    final _$actionInfo = _$_StopwatchStoreActionController.startAction(
+        name: '_StopwatchStore._reset');
+    try {
+      return super._reset();
     } finally {
       _$_StopwatchStoreActionController.endAction(_$actionInfo);
     }

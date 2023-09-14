@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+import '../themes/custom_theme.dart';
 import 'digital/elapsed_time_text.dart';
 
 class LapListItem extends StatelessWidget {
@@ -19,31 +20,29 @@ class LapListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width / 3;
-    return CupertinoFormRow(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      prefix: Text(
-        'Lap $lapNumber',
-        style: TextStyle(
-          color: isFastest
-              ? CupertinoColors.activeGreen
-              : isSlowest
-                  ? CupertinoColors.destructiveRed
-                  : CupertinoColors.white,
-        ),
-      ),
-      child: Row(
+    return CupertinoListTile(
+      title: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          RepaintBoundary(
-            child: ElapsedTimeText(
-              elapsed: lapDuration,
-              size: size,
+          Text(
+            'Lap $lapNumber',
+            style: TextStyle(
               color: isFastest
-                  ? CupertinoColors.activeGreen
+                  ? context.green
                   : isSlowest
-                      ? CupertinoColors.destructiveRed
-                      : CupertinoColors.white,
+                      ? context.red
+                      : context.mainText,
             ),
+          ),
+          const Spacer(),
+          ElapsedTimeText(
+            elapsed: lapDuration,
+            size: size,
+            color: isFastest
+                ? context.green
+                : isSlowest
+                    ? context.red
+                    : context.mainText,
           ),
         ],
       ),

@@ -1,7 +1,10 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../store/slider_state/slider_state.dart';
 import '../../store/stopwatch/stopwatch.dart';
+import '../../themes/custom_theme.dart';
 import 'reset_lap_button.dart';
 import 'start_stop_button.dart';
 
@@ -10,38 +13,49 @@ class Buttons extends StatelessWidget {
     super.key,
     required this.radius,
     required this.state,
+    required this.sliderState,
+    required this.onTap,
   });
 
   final double radius;
   final StopwatchStore state;
+  final SliderState sliderState;
+  final Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Row(
       children: [
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: SizedBox(
-            width: radius / 2.2,
-            height: radius / 2.2,
-            child: Observer(
-              builder: (context) => ResetButton(
-                onPressed: state.lapOrReset,
-                isRunning: state.isRunning,
-              ),
+        SizedBox(
+          width: radius / 2.2,
+          height: radius / 2.2,
+          child: Observer(
+            builder: (context) => ResetButton(
+              onPressed: state.lapOrReset,
+              isRunning: state.isRunning,
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SizedBox(
-            width: radius / 2.2,
-            height: radius / 2.2,
-            child: Observer(
-              builder: (context) => StartStopButton(
-                isRunning: state.isRunning,
-                onPressed: state.startOrStop,
-              ),
+        const Spacer(),
+        Observer(
+          builder: (_) => DotsIndicator(
+            decorator: DotsDecorator(
+              color: context.gray6, // Inactive color
+              activeColor: context.gray1,
+            ),
+            dotsCount: 2,
+            position: sliderState.currentIndex,
+            onTap: onTap,
+          ),
+        ),
+        const Spacer(),
+        SizedBox(
+          width: radius / 2.2,
+          height: radius / 2.2,
+          child: Observer(
+            builder: (context) => StartStopButton(
+              isRunning: state.isRunning,
+              onPressed: state.startOrStop,
             ),
           ),
         ),
