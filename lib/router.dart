@@ -21,7 +21,10 @@ class Router extends $Router {
     AdaptiveRoute(
       page: DashboardRoute.page,
       children: [
+        AutoRoute(page: WorldClockRoute.page),
+        AutoRoute(page: AlarmRoute.page),
         AutoRoute(page: StopwatchRoute.page),
+        AutoRoute(page: TimerRoute.page),
       ],
     ),
   ];

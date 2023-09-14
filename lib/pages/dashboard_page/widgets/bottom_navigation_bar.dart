@@ -54,26 +54,37 @@ class BottomNavigationBar extends HookWidget {
                 (e) {
                   final isActive = tabsRouter.activeIndex == e.index;
 
-                  final icon = isActive ? e.iconPathActive : e.iconPath;
-
                   return Expanded(
                     child: GestureDetector(
                       onTap: () => onChange(e.index),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              AnimatedSwitcher(
-                                duration: fastAnimationDuration,
-                                child: Icon(icon),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                AnimatedSwitcher(
+                                  duration: fastAnimationDuration,
+                                  child: Icon(
+                                    e.iconPath,
+                                    color: isActive
+                                        ? context.orange
+                                        : context.icon,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Gap(4),
+                            Text(
+                              e.labelTranslationKey.tr(),
+                              style: context.theme.bodySmallBold.copyWith(
+                                color: isActive ? context.orange : context.icon,
                               ),
-                            ],
-                          ),
-                          const Gap(4),
-                          Text(e.labelTranslationKey.tr()),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

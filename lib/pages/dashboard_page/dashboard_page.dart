@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../extensions/build_context_extensions.dart';
 import '../../router.dart';
+import '../../utils/durations_utils.dart';
 import 'widgets/bottom_navigation_bar.dart' as bar;
 
 @RoutePage()
@@ -15,16 +16,18 @@ class DashboardPage extends HookWidget {
   Widget build(BuildContext context) {
     final pages = useMemoized<List<PageRouteInfo>>(
       () => [
+        const WorldClockRoute(),
+        const AlarmRoute(),
         const StopwatchRoute(),
+        const TimerRoute(),
       ],
-      [],
     );
 
     final tabsRouter = useRef<TabsRouter?>(null);
 
     return AutoTabsRouter(
       routes: pages,
-      homeIndex: 0,
+      duration: fastAnimationDuration,
       curve: Curves.easeInOut,
       builder: (context, child) {
         tabsRouter.value ??= AutoTabsRouter.of(context);
