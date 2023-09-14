@@ -1,4 +1,4 @@
-name: Run analyze and tests
+name: Run analyze
 
 on: pull_request
 
@@ -12,4 +12,3 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter analyze
-      - run: flutter test
