@@ -8,12 +8,16 @@
     "yes": "Yes",
     "no": "No",
     "ok": "Ok",
-    "start":"Start",
-    "stop":"Stop",
-    "reset":"Reset",
-    "lap":"Lap"
+    "start": "Start",
+    "stop": "Stop",
+    "reset": "Reset",
+    "lap": "Lap",
+    "edit": "Edit"
   },
-  "dashboardPagesEnum":{
-    "STOPWATCH":"Stopwatch"
+  "dashboardPagesEnum": {
+    "STOPWATCH": "Stopwatch",
+    "WORLDCLOCK": "World Clock",
+    "ALARM": "Alarm",
+    "TIMER": "Timer"
   }
 }
