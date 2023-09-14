@@ -1,4 +1,4 @@
-# stopwatch
+# Clock
 
 [![iOS](https://github.com/ArAmM7/stopwatch/actions/workflows/iOS.yml/badge.svg)](https://github.com/ArAmM7/stopwatch/actions/workflows/iOS.yml)
 [![Android](https://github.com/ArAmM7/stopwatch/actions/workflows/Android.yml/badge.svg)](https://github.com/ArAmM7/stopwatch/actions/workflows/Android.yml)
@@ -7,6 +7,6 @@
 [![Linux](https://github.com/ArAmM7/stopwatch/actions/workflows/Linux.yml/badge.svg)](https://github.com/ArAmM7/stopwatch/actions/workflows/Linux.yml)
 [![macOS](https://github.com/ArAmM7/stopwatch/actions/workflows/macOS.yml/badge.svg)](https://github.com/ArAmM7/stopwatch/actions/workflows/macOS.yml)
 
-A basic stopwatch app using Flutter, inspired by the iOS default stopwatch
+A basic clock app using Flutter, inspired by the iOS default clock app
 
 [Click here to view a demo](https://aramm7.github.io/stopwatch/)
