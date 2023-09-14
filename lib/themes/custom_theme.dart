@@ -71,7 +71,7 @@ class _$CustomTheme {
   ];
 
   static List<Color> bottomNavigationBar = [
-    AppColors.black.withOpacity(0.3),
-    AppColors.black.withOpacity(0.3),
+    AppColors.grayLight4.withOpacity(0.4),
+    AppColors.grayDark4.withOpacity(0.4),
   ];
 }

@@ -35,6 +35,7 @@ class DashboardPage extends HookWidget {
         return Scaffold(
           extendBody: true,
           resizeToAvoidBottomInset: false,
+          extendBodyBehindAppBar: true,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar:

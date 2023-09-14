@@ -13,7 +13,7 @@ class App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'keywords.clock'.tr(),
+      title: 'Clock',
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       localizationsDelegates: context.localizationDelegates,

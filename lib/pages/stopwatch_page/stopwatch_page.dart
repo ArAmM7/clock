@@ -9,6 +9,7 @@ import 'package:gap/gap.dart';
 
 import '../../constants/stopwatch_category.dart';
 import '../../extensions/build_context_extensions.dart';
+import '../../extensions/widget_extension.dart';
 import '../../store/slider_state/slider_state.dart';
 import '../../store/stopwatch/stopwatch.dart';
 import '../../themes/custom_theme.dart';
@@ -54,100 +55,95 @@ class StopwatchPage extends HookWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Gap(context.topPadding),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: AspectRatio(
-              aspectRatio: 0.85,
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final radius = math.min(
-                    constraints.maxWidth / 2,
-                    constraints.maxHeight / 2,
-                  );
-                  final radiusSmall = math.min(
-                    constraints.maxWidth / 7,
-                    constraints.maxHeight / 7,
-                  );
-                  return Stack(
-                    children: [
-                      PageView(
-                        onPageChanged: _onPageChanged,
-                        controller: _pageController,
-                        children: [
-                          Padding(
-                            key: const ValueKey('Digital_watch'),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                            ),
-                            child: Center(
-                              child: Observer(
-                                builder: (_) => ElapsedTimeText(
-                                  color: context.mainText,
-                                  size: radius * 3,
-                                  elapsed: stopwatchState.elapsed,
-                                  isLaps: false,
-                                ),
-                              ),
+          AspectRatio(
+            aspectRatio: 0.88,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final radius = math.min(
+                  constraints.maxWidth / 2,
+                  constraints.maxHeight / 2,
+                );
+                final radiusSmall = math.min(
+                  constraints.maxWidth / 7,
+                  constraints.maxHeight / 7,
+                );
+                return Stack(
+                  children: [
+                    PageView(
+                      onPageChanged: _onPageChanged,
+                      controller: _pageController,
+                      children: [
+                        Center(
+                          child: Observer(
+                            builder: (_) => ElapsedTimeText(
+                              color: context.mainText,
+                              size: radius * 3,
+                              elapsed: stopwatchState.elapsed,
+                              isLaps: false,
                             ),
                           ),
-                          Stack(
-                            key: const ValueKey('Analog_watch'),
-                            children: [
-                              Positioned(
-                                left: radius - radiusSmall,
-                                top: radiusSmall * 1.2,
-                                child: SizedBox(
-                                  width: radius * 2,
-                                  height: radius * 2,
-                                  child: Observer(
-                                    builder: (_) => AnalogStopwatch(
-                                      radius: radiusSmall,
-                                      numOfTicks: 30,
-                                      cat: Category.minutes,
-                                      elapsed: stopwatchState.elapsed,
+                        ).paddingHorizontal(),
+                        Stack(
+                          key: const ValueKey('Analog_watch'),
+                          children: [
+                            Positioned(
+                              left: radius - radiusSmall,
+                              top: radiusSmall * 1.2,
+                              child: SizedBox(
+                                width: radius * 2,
+                                height: radius * 2,
+                                child: Observer(
+                                  builder: (_) => AnalogStopwatch(
+                                    key: const ValueKey(
+                                      'AnalogStopwatchMinutes',
                                     ),
+                                    radius: radiusSmall,
+                                    numOfTicks: 30,
+                                    cat: Category.minutes,
+                                    elapsed: stopwatchState.elapsed,
                                   ),
                                 ),
                               ),
-                              Observer(
-                                builder: (_) => AnalogStopwatch(
-                                  radius: radius,
-                                  numOfTicks: 60,
-                                  cat: Category.regular,
-                                  elapsed: stopwatchState.elapsed,
-                                ),
+                            ),
+                            Observer(
+                              builder: (_) => AnalogStopwatch(
+                                key: const ValueKey('AnalogStopwatchSeconds'),
+                                radius: radius,
+                                numOfTicks: 60,
+                                cat: Category.regular,
+                                elapsed: stopwatchState.elapsed,
                               ),
-                              Observer(
-                                builder: (_) => AnalogStopwatch(
-                                  key: const ValueKey('AnalogStopwatchLap'),
-                                  radius: radius,
-                                  numOfTicks: 60,
-                                  cat: Category.lap,
-                                  elapsed: stopwatchState.elapsed,
-                                  elapsedLaps: stopwatchState.elapsedLaps,
-                                ),
+                            ),
+                            Observer(
+                              builder: (_) => AnalogStopwatch(
+                                key: const ValueKey('AnalogStopwatchLap'),
+                                radius: radius,
+                                numOfTicks: 60,
+                                cat: Category.lap,
+                                elapsed: stopwatchState.elapsed,
+                                elapsedLaps: stopwatchState.elapsedLaps,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Buttons(
-                            key: const ValueKey('Buttons'),
-                            radius: radius,
-                            state: stopwatchState,
-                            onTap: _onTap,
-                            sliderState: _sliderState,
-                          ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Buttons(
+                          key: const ValueKey('Buttons'),
+                          radius: radius * 0.85,
+                          state: stopwatchState,
+                          onTap: _onTap,
+                          sliderState: _sliderState,
                         ),
                       ),
-                    ],
-                  );
-                },
-              ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           Expanded(
