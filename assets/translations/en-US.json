@@ -12,6 +12,7 @@
     "stop": "Stop",
     "reset": "Reset",
     "lap": "Lap",
+    "lapNumbered": "Lap {val}",
     "edit": "Edit"
   },
   "dashboardPagesEnum": {

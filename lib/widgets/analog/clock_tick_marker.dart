@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../themes/custom_theme.dart';
+
 class ClockTickMarker extends HookWidget {
   final int seconds;
   final double radius;
@@ -30,7 +32,7 @@ class ClockTickMarker extends HookWidget {
         height: height,
         width: width,
         child: ColoredBox(
-          color: seconds % 5 == 0 ? Colors.white : Colors.grey.withAlpha(127),
+          color: seconds % 5 == 0 ? context.mainText : context.gray3,
         ),
       ),
     );

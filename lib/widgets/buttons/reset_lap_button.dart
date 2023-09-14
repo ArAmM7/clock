@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 
+import '../../extensions/extensions.dart';
+import '../../themes/custom_theme.dart';
+
 class ResetButton extends StatelessWidget {
   final bool isRunning;
   final VoidCallback? onPressed;
@@ -17,12 +20,12 @@ class ResetButton extends StatelessWidget {
       onPressed: onPressed,
       child: ClipOval(
         child: Material(
-          color: Colors.grey.withAlpha(64),
+          color: context.gray2.withOpacity(0.25),
           child: Align(
             child: Text(
-              isRunning ? 'Lap' : 'Reset',
-              style: const TextStyle(
-                color: Colors.grey,
+              (isRunning ? 'keywords.lap' : 'keywords.reset').tr(),
+              style: TextStyle(
+                color: context.gray1,
                 fontWeight: FontWeight.bold,
               ),
             ),
