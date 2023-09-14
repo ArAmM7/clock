@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+import '../extensions/extensions.dart';
 import '../themes/custom_theme.dart';
 import 'digital/elapsed_time_text.dart';
 
@@ -25,7 +26,7 @@ class LapListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Lap $lapNumber',
+            'keywords.lapNumbered'.tr(namedArgs: {'val': lapNumber.toString()}),
             style: TextStyle(
               color: isFastest
                   ? context.green

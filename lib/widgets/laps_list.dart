@@ -41,8 +41,7 @@ class LapsList extends StatelessWidget {
             );
           },
         ),
-        separatorBuilder: (_, __) =>
-            Divider(color: Colors.grey.shade800, indent: 16, endIndent: 16),
+        separatorBuilder: (_, __) => const Divider(indent: 16, endIndent: 16),
       ),
     );
   }
