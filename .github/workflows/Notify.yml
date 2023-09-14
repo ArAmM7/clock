@@ -2,7 +2,7 @@ name: Notify
 
 on:
   workflow_run:
-    workflows: [ Android, iOS, Web, pages-build-deployment ]
+    workflows: [ pages-build-deployment ]
     types: [ completed ]
 
 jobs:
