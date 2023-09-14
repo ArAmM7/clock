@@ -8,7 +8,7 @@ class ElapsedTimeText extends HookWidget {
     super.key,
     required this.elapsed,
     required this.size,
-    this.color = CupertinoColors.white,
+    required this.color,
     this.isLaps = true,
   });
 

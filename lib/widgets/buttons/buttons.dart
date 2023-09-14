@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../store/slider_state/slider_state.dart';
 import '../../store/stopwatch/stopwatch.dart';
+import '../../themes/custom_theme.dart';
 import 'reset_lap_button.dart';
 import 'start_stop_button.dart';
 
@@ -38,9 +39,9 @@ class Buttons extends StatelessWidget {
         const Spacer(),
         Observer(
           builder: (_) => DotsIndicator(
-            decorator: const DotsDecorator(
-              color: CupertinoColors.systemGrey, // Inactive color
-              activeColor: CupertinoColors.white,
+            decorator: DotsDecorator(
+              color: context.gray6, // Inactive color
+              activeColor: context.gray1,
             ),
             dotsCount: 2,
             position: sliderState.currentIndex,

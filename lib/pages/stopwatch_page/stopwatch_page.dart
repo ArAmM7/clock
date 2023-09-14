@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
 
@@ -11,6 +11,7 @@ import '../../constants/stopwatch_category.dart';
 import '../../extensions/build_context_extensions.dart';
 import '../../store/slider_state/slider_state.dart';
 import '../../store/stopwatch/stopwatch.dart';
+import '../../themes/custom_theme.dart';
 import '../../widgets/analog/analog_stopwatch.dart';
 import '../../widgets/buttons/buttons.dart';
 import '../../widgets/digital/elapsed_time_text.dart';
@@ -59,11 +60,11 @@ class StopwatchPage extends HookWidget {
               aspectRatio: 0.85,
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  final radius = min(
+                  final radius = math.min(
                     constraints.maxWidth / 2,
                     constraints.maxHeight / 2,
                   );
-                  final radiusSmall = min(
+                  final radiusSmall = math.min(
                     constraints.maxWidth / 7,
                     constraints.maxHeight / 7,
                   );
@@ -81,6 +82,7 @@ class StopwatchPage extends HookWidget {
                             child: Center(
                               child: Observer(
                                 builder: (_) => ElapsedTimeText(
+                                  color: context.mainText,
                                   size: radius * 3,
                                   elapsed: stopwatchState.elapsed,
                                   isLaps: false,

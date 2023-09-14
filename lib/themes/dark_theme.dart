@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../gen/fonts.gen.dart';
 import 'app_colors.dart';
@@ -10,12 +9,7 @@ final base = ThemeData.dark();
 
 final darkTheme = base.copyWith(
   extensions: [CustomTheme.dark],
-  shadowColor: CustomTheme.dark.primary.withOpacity(0.2),
-  colorScheme: base.colorScheme.copyWith(
-    primary: CustomTheme.dark.scaffoldBackground,
-    onPrimary: CustomTheme.dark.mainText,
-  ),
-  primaryColor: CustomTheme.dark.primary,
+  shadowColor: CustomTheme.dark.gray1.withOpacity(0.2),
   dividerColor: CustomTheme.dark.divider,
   dividerTheme: base.dividerTheme.copyWith(
     space: 0.6,
@@ -27,109 +21,35 @@ final darkTheme = base.copyWith(
       textStyle: MaterialStatePropertyAll(base.textTheme.bodySmall),
     ),
   ),
-  cardColor: CustomTheme.dark.card,
+  cardColor: CustomTheme.dark.gray5,
   primaryIconTheme:
-      base.primaryIconTheme.copyWith(color: CustomTheme.dark.primary),
-  scaffoldBackgroundColor: CustomTheme.dark.scaffoldBackground,
+      base.primaryIconTheme.copyWith(color: CustomTheme.dark.icon),
+  scaffoldBackgroundColor: CustomTheme.dark.black,
   iconTheme: base.iconTheme.copyWith(color: CustomTheme.dark.icon),
-  appBarTheme: base.appBarTheme.copyWith(
-    color: CustomTheme.dark.scaffoldBackground,
-    centerTitle: true,
-    elevation: 0,
-    iconTheme: IconThemeData(
-      color: CustomTheme.dark.primary,
-    ),
-    titleTextStyle: base.primaryTextTheme.titleLarge!.copyWith(
-      fontFamily: FontFamily.sFPro,
-      color: CustomTheme.dark.mainText,
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-      letterSpacing: -0.4,
-      height: 1.1,
-    ),
-    systemOverlayStyle: SystemUiOverlayStyle.light,
-    toolbarTextStyle: base.textTheme
-        .copyWith(
-          bodyLarge: base.textTheme.bodyLarge!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.dark.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          titleLarge: base.textTheme.titleLarge!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.dark.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          displaySmall: base.textTheme.displaySmall!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.dark.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineMedium: base.textTheme.headlineMedium!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.dark.mainText,
-            fontWeight: FontWeight.w500,
-          ),
-        )
-        .bodyMedium,
-  ),
   bottomNavigationBarTheme: base.bottomNavigationBarTheme.copyWith(
-    backgroundColor: CustomTheme.dark.bottomNavigationBar,
+    backgroundColor: CustomTheme.dark.black,
     selectedLabelStyle: TextStyle(
-      color: CustomTheme.dark.mainText,
+      color: CustomTheme.dark.orange,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.normal,
       fontSize: 14,
     ),
     unselectedLabelStyle: TextStyle(
-      color: CustomTheme.dark.secondaryText,
+      color: CustomTheme.dark.icon,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.normal,
       fontSize: 14,
     ),
     elevation: 0,
   ),
-  chipTheme: base.chipTheme.copyWith(
-    backgroundColor: CustomTheme.dark.tag,
-    labelPadding: EdgeInsets.zero,
-    labelStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.dark.mainText,
-      fontFamily: FontFamily.sFPro,
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
-      height: 1.3,
-    ),
-    padding: const EdgeInsets.symmetric(
-      horizontal: 8,
-      vertical: 4,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: const BorderRadius.all(Radius.circular(24)),
-      side: BorderSide(
-        color: CustomTheme.dark.primary,
-        width: 2,
-        style: BorderStyle.none,
-      ),
-    ),
-    selectedColor: CustomTheme.dark.modalBackground,
-    secondaryLabelStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.dark.primary,
-      fontFamily: FontFamily.sFPro,
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
-      height: 1.3,
-    ),
-    elevation: 0,
-    pressElevation: 0,
-  ),
   textSelectionTheme: base.textSelectionTheme.copyWith(
     cursorColor: CustomTheme.dark.mainText,
-    selectionHandleColor: CustomTheme.dark.secondaryButton,
-    selectionColor: CustomTheme.dark.secondaryButton,
+    selectionHandleColor: CustomTheme.dark.gray1,
+    selectionColor: CustomTheme.dark.gray3,
   ),
   cupertinoOverrideTheme: CupertinoThemeData(
-    primaryColor: CustomTheme.dark.primary,
-    scaffoldBackgroundColor: CustomTheme.dark.scaffoldBackground,
+    primaryColor: CustomTheme.dark.black,
+    scaffoldBackgroundColor: CustomTheme.dark.black,
     textTheme: CupertinoTextThemeData(
       tabLabelTextStyle: TextStyle(
         color: CustomTheme.dark.mainText,
@@ -144,20 +64,20 @@ final darkTheme = base.copyWith(
         fontSize: 16,
         height: 1.3,
       ),
-      primaryColor: CustomTheme.dark.primary,
+      primaryColor: CustomTheme.dark.white,
     ),
   ),
   brightness: Brightness.dark,
   inputDecorationTheme: base.inputDecorationTheme.copyWith(
     errorStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.dark.error,
+      color: CustomTheme.dark.red,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.w400,
       fontSize: 14,
       height: 1.3,
     ),
     hintStyle: base.primaryTextTheme.bodyLarge!.copyWith(
-      color: CustomTheme.dark.fieldBorder,
+      color: CustomTheme.dark.gray2,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.w400,
       fontSize: 16,
@@ -167,29 +87,29 @@ final darkTheme = base.copyWith(
     border: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.dark.fieldBorder,
+        color: CustomTheme.dark.divider,
       ),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.dark.error,
+        color: CustomTheme.dark.red,
       ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.dark.fieldBorder,
+        color: CustomTheme.dark.divider,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.dark.primary,
+        color: CustomTheme.dark.divider,
       ),
     ),
     filled: true,
-    fillColor: CustomTheme.dark.fieldFill,
+    fillColor: CustomTheme.dark.black,
     labelStyle: TextStyle(
       color: CustomTheme.dark.mainText,
       fontFamily: FontFamily.sFPro,
@@ -202,7 +122,7 @@ final darkTheme = base.copyWith(
     preferBelow: false,
     textStyle: base.primaryTextTheme.bodySmall,
     decoration: BoxDecoration(
-      color: CustomTheme.dark.cardAlternative,
+      color: CustomTheme.dark.gray2,
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       border: Border.all(color: AppColors.primaryAppColor.withOpacity(0.3)),
     ),
@@ -311,7 +231,7 @@ final darkTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.dark.error;
+        return CustomTheme.dark.red;
       }
 
       return null;
@@ -323,7 +243,7 @@ final darkTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.dark.error;
+        return CustomTheme.dark.red;
       }
 
       return null;
@@ -335,7 +255,7 @@ final darkTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.dark.error;
+        return CustomTheme.dark.red;
       }
 
       return null;
@@ -345,14 +265,14 @@ final darkTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.dark.error;
+        return CustomTheme.dark.red;
       }
 
       return null;
     }),
   ),
   snackBarTheme: base.snackBarTheme.copyWith(
-    backgroundColor: CustomTheme.dark.textTag,
+    backgroundColor: CustomTheme.dark.gray4,
     contentTextStyle: base.textTheme.bodySmall,
   ),
 );

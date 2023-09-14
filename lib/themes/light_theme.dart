@@ -1,129 +1,55 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../gen/fonts.gen.dart';
+import 'app_colors.dart';
 import 'custom_theme.dart';
 
 final base = ThemeData.light();
 
 final lightTheme = base.copyWith(
   extensions: [CustomTheme.light],
-  shadowColor: CustomTheme.light.primary.withOpacity(0.2),
-  colorScheme: base.colorScheme.copyWith(
-    primary: CustomTheme.light.scaffoldBackground,
-    onPrimary: CustomTheme.light.mainText,
-  ),
-  primaryColor: CustomTheme.light.primary,
+  shadowColor: CustomTheme.light.gray1.withOpacity(0.2),
   dividerColor: CustomTheme.light.divider,
   dividerTheme: base.dividerTheme.copyWith(
     space: 0.6,
     thickness: 1,
     color: CustomTheme.light.divider,
   ),
-  cardColor: CustomTheme.light.card,
-  primaryIconTheme:
-      base.primaryIconTheme.copyWith(color: CustomTheme.light.primary),
-  scaffoldBackgroundColor: CustomTheme.light.scaffoldBackground,
-  iconTheme: base.iconTheme.copyWith(color: CustomTheme.light.icon),
-  appBarTheme: base.appBarTheme.copyWith(
-    color: CustomTheme.light.scaffoldBackground,
-    centerTitle: true,
-    elevation: 0,
-    iconTheme: IconThemeData(
-      color: CustomTheme.light.icon,
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStatePropertyAll(base.textTheme.bodySmall),
     ),
-    titleTextStyle: base.primaryTextTheme.titleLarge!.copyWith(
-      fontFamily: FontFamily.sFPro,
-      color: CustomTheme.light.mainText,
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-      letterSpacing: -0.4,
-      height: 1.1,
-    ),
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
-    toolbarTextStyle: base.textTheme
-        .copyWith(
-          bodyLarge: base.textTheme.bodyLarge!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.light.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          titleLarge: base.textTheme.titleLarge!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.light.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          displaySmall: base.textTheme.displaySmall!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.light.mainText,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineMedium: base.textTheme.headlineMedium!.copyWith(
-            fontFamily: FontFamily.sFPro,
-            color: CustomTheme.light.mainText,
-            fontWeight: FontWeight.w500,
-          ),
-        )
-        .bodyMedium,
   ),
+  cardColor: CustomTheme.light.gray5,
+  primaryIconTheme:
+      base.primaryIconTheme.copyWith(color: CustomTheme.light.icon),
+  scaffoldBackgroundColor: CustomTheme.light.white,
+  iconTheme: base.iconTheme.copyWith(color: CustomTheme.light.icon),
   bottomNavigationBarTheme: base.bottomNavigationBarTheme.copyWith(
-    backgroundColor: CustomTheme.light.bottomNavigationBar,
+    backgroundColor: CustomTheme.light.white,
     selectedLabelStyle: TextStyle(
-      color: CustomTheme.light.mainText,
+      color: CustomTheme.light.orange,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.normal,
       fontSize: 14,
     ),
     unselectedLabelStyle: TextStyle(
-      color: CustomTheme.light.secondaryText,
+      color: CustomTheme.light.icon,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.normal,
       fontSize: 14,
     ),
     elevation: 0,
   ),
-  chipTheme: base.chipTheme.copyWith(
-    backgroundColor: CustomTheme.light.tag,
-    labelPadding: EdgeInsets.zero,
-    labelStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.light.mainText,
-      fontFamily: FontFamily.sFPro,
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
-      height: 1.3,
-    ),
-    padding: const EdgeInsets.symmetric(
-      horizontal: 8,
-      vertical: 4,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: const BorderRadius.all(Radius.circular(24)),
-      side: BorderSide(
-        color: CustomTheme.light.primary,
-        width: 2,
-        style: BorderStyle.none,
-      ),
-    ),
-    selectedColor: CustomTheme.light.modalBackground,
-    secondaryLabelStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.light.primary,
-      fontFamily: FontFamily.sFPro,
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
-      height: 1.3,
-    ),
-    elevation: 0,
-    pressElevation: 0,
-  ),
   textSelectionTheme: base.textSelectionTheme.copyWith(
-    cursorColor: CustomTheme.light.secondaryButton,
-    selectionHandleColor: CustomTheme.light.secondaryButton,
-    selectionColor: CustomTheme.light.secondaryButton,
+    cursorColor: CustomTheme.light.mainText,
+    selectionHandleColor: CustomTheme.light.gray1,
+    selectionColor: CustomTheme.light.gray3,
   ),
   cupertinoOverrideTheme: CupertinoThemeData(
-    primaryColor: CustomTheme.light.primary,
-    scaffoldBackgroundColor: CustomTheme.light.scaffoldBackground,
+    primaryColor: CustomTheme.light.white,
+    scaffoldBackgroundColor: CustomTheme.light.white,
     textTheme: CupertinoTextThemeData(
       tabLabelTextStyle: TextStyle(
         color: CustomTheme.light.mainText,
@@ -138,19 +64,20 @@ final lightTheme = base.copyWith(
         fontSize: 16,
         height: 1.3,
       ),
+      primaryColor: CustomTheme.light.white,
     ),
   ),
   brightness: Brightness.light,
   inputDecorationTheme: base.inputDecorationTheme.copyWith(
     errorStyle: base.primaryTextTheme.bodyMedium!.copyWith(
-      color: CustomTheme.light.error,
+      color: CustomTheme.light.red,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.w400,
       fontSize: 14,
       height: 1.3,
     ),
     hintStyle: base.primaryTextTheme.bodyLarge!.copyWith(
-      color: CustomTheme.light.placeholder,
+      color: CustomTheme.light.gray2,
       fontFamily: FontFamily.sFPro,
       fontWeight: FontWeight.w400,
       fontSize: 16,
@@ -160,29 +87,29 @@ final lightTheme = base.copyWith(
     border: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.light.fieldBorder,
+        color: CustomTheme.light.divider,
       ),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.light.error,
+        color: CustomTheme.light.red,
       ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.light.fieldBorder,
+        color: CustomTheme.light.divider,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-        color: CustomTheme.light.primary,
+        color: CustomTheme.light.divider,
       ),
     ),
     filled: true,
-    fillColor: CustomTheme.light.fieldFill,
+    fillColor: CustomTheme.light.white,
     labelStyle: TextStyle(
       color: CustomTheme.light.mainText,
       fontFamily: FontFamily.sFPro,
@@ -193,9 +120,11 @@ final lightTheme = base.copyWith(
   ),
   tooltipTheme: TooltipThemeData(
     preferBelow: false,
+    textStyle: base.primaryTextTheme.bodySmall,
     decoration: BoxDecoration(
-      color: CustomTheme.light.cardAlternative,
+      color: CustomTheme.light.gray2,
       borderRadius: const BorderRadius.all(Radius.circular(16)),
+      border: Border.all(color: AppColors.primaryAppColor.withOpacity(0.3)),
     ),
   ),
   textTheme: base.primaryTextTheme.copyWith(
@@ -302,7 +231,7 @@ final lightTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.light.error;
+        return CustomTheme.light.red;
       }
 
       return null;
@@ -314,7 +243,7 @@ final lightTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.light.error;
+        return CustomTheme.light.red;
       }
 
       return null;
@@ -326,7 +255,7 @@ final lightTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.light.error;
+        return CustomTheme.light.red;
       }
 
       return null;
@@ -336,10 +265,14 @@ final lightTheme = base.copyWith(
         return null;
       }
       if (states.contains(MaterialState.selected)) {
-        return CustomTheme.light.error;
+        return CustomTheme.light.red;
       }
 
       return null;
     }),
+  ),
+  snackBarTheme: base.snackBarTheme.copyWith(
+    backgroundColor: CustomTheme.light.gray4,
+    contentTextStyle: base.textTheme.bodySmall,
   ),
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+import '../themes/custom_theme.dart';
 import 'digital/elapsed_time_text.dart';
 
 class LapListItem extends StatelessWidget {
@@ -27,10 +28,10 @@ class LapListItem extends StatelessWidget {
             'Lap $lapNumber',
             style: TextStyle(
               color: isFastest
-                  ? CupertinoColors.activeGreen
+                  ? context.green
                   : isSlowest
-                      ? CupertinoColors.destructiveRed
-                      : CupertinoColors.white,
+                      ? context.red
+                      : context.mainText,
             ),
           ),
           const Spacer(),
@@ -38,10 +39,10 @@ class LapListItem extends StatelessWidget {
             elapsed: lapDuration,
             size: size,
             color: isFastest
-                ? CupertinoColors.activeGreen
+                ? context.green
                 : isSlowest
-                    ? CupertinoColors.destructiveRed
-                    : CupertinoColors.white,
+                    ? context.red
+                    : context.mainText,
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 import '../../constants/stopwatch_category.dart';
+import '../../themes/custom_theme.dart';
 import '../digital/elapsed_time_text.dart';
 import 'analog_stopwatch_face.dart';
 import 'clock_hand.dart';
@@ -48,9 +49,7 @@ class AnalogStopwatch extends StatelessWidget {
                           (2 * pi / 60000) *
                               (elapsed - elapsedLaps).inMilliseconds
                       : pi + (2 * pi / 1800000) * elapsed.inMilliseconds,
-              color: cat == Category.lap
-                  ? CupertinoColors.activeBlue
-                  : CupertinoColors.activeOrange,
+              color: cat == Category.lap ? context.blue : context.orange,
             ),
           ),
         ),
@@ -60,6 +59,7 @@ class AnalogStopwatch extends StatelessWidget {
             right: 0,
             top: radius * 1.3,
             child: ElapsedTimeText(
+              color: context.mainText,
               elapsed: elapsed,
               size: radius,
             ),

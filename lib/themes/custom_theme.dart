@@ -7,155 +7,71 @@ part 'custom_theme.tailor.dart';
 
 @tailor
 class _$CustomTheme {
-  static List<Color> primary = [
-    AppColors.primaryAppColor,
-    AppColors.primaryAppColor,
+  static List<Color> black = [
+    AppColors.black,
+    AppColors.black,
   ];
-  static List<Color> primaryButton = [
-    AppColors.primaryAppColor,
-    AppColors.primaryAppColor,
-  ];
-  static List<Color> secondaryButton = [
-    AppColors.neutralDark[16]!,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> alternativeButton = [
-    AppColors.neutralWhite,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> iconButton = [
-    AppColors.neutralDark[16]!.withOpacity(0.5),
-    AppColors.neutralDark[80]!.withOpacity(0.5),
-  ];
-  static List<Color> scaffoldBackground = [
-    AppColors.neutralLight,
-    AppColors.neutralDark,
-  ];
-  static List<Color> modalBackground = [
-    AppColors.neutralWhite,
-    AppColors.neutralDark,
+  static List<Color> white = [
+    AppColors.white,
+    AppColors.white,
   ];
   static List<Color> mainText = [
-    AppColors.neutralDark,
-    AppColors.neutralWhite,
-  ];
-  static List<Color> secondaryText = [
-    AppColors.neutralDark[80]!,
-    AppColors.neutralDark[32]!,
-  ];
-  static List<Color> divider = [
-    AppColors.neutralLight,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> fieldBorder = [
-    AppColors.neutralLight,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> fieldFill = [
-    AppColors.neutralWhite,
-    AppColors.neutralDark,
-  ];
-  static List<Color> placeholder = [
-    AppColors.neutralDark[40]!,
-    AppColors.neutralWhite70,
-  ];
-  static List<Color> tag = [
-    AppColors.neutralLight,
-    AppColors.focusDark,
-  ];
-  static List<Color> textTag = [
-    AppColors.neutralLight,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> card = [
-    AppColors.neutralWhite,
-    AppColors.focusDark,
-  ];
-  static List<Color> cardSecondary = [
-    AppColors.neutralDark[16]!,
-    AppColors.focusDark,
-  ];
-  static List<Color> cardAlternative = [
-    AppColors.neutralDark,
-    AppColors.focusDark,
-  ];
-  static List<Color> icon = [
-    AppColors.neutralDark,
-    AppColors.neutralWhite,
-  ];
-  static List<Color> iconSecondary = [
-    AppColors.neutralDark[24]!,
-    AppColors.neutralDark[64]!,
-  ];
-  static List<Color> iconTertiary = [
-    AppColors.neutralWhite,
-    AppColors.neutralDark,
-  ];
-  static List<Color> iconAlternative = [
-    AppColors.neutralDark[40]!,
-    AppColors.neutralDark[64]!,
-  ];
-  static List<Color> bottomNavigationBar = [
-    AppColors.neutralWhite,
-    AppColors.darkBottomNavigationColor,
-  ];
-  static List<Color> error = [
-    AppColors.notification,
-    AppColors.notification,
-  ];
-  static List<Color> chatMineBubbleBackground = [
-    AppColors.primaryAppColor,
-    AppColors.neutralDark[80]!,
-  ];
-  static List<Color> chatBubbleBackground = [
-    AppColors.neutralWhite,
-    AppColors.focusDark,
-  ];
-  static List<Color> chatMineBubbleForeground = [
-    AppColors.neutralWhite,
-    AppColors.neutralWhite,
-  ];
-  static List<Color> chatBubbleForeground = [
-    AppColors.neutralDark,
-    AppColors.neutralWhite,
-  ];
-
-  static List<LinearGradient> shadowGradient = [
-    AppColors.shadowGradient,
-    AppColors.shadowGradient,
-  ];
-
-  static List<LinearGradient> onboardingGradient = [
-    AppColors.onboardingGradient,
-    AppColors.onboardingGradient,
-  ];
-
-  static List<LinearGradient> goldGradient = [
-    AppColors.goldGradient,
-    AppColors.goldGradient,
-  ];
-  static List<Color> switchOff = [
-    AppColors.neutralLight,
-    AppColors.neutralDark[32]!,
+    AppColors.black,
+    AppColors.white,
   ];
   static List<Color> red = [
-    AppColors.red,
-    AppColors.red,
-  ];
-  static List<Color> sliderBackgroundColorEnd = [
-    AppColors.primaryAppColorDark[80]!,
-    AppColors.primaryAppColorDark[80]!,
+    AppColors.redLight,
+    AppColors.redDark,
   ];
   static List<Color> green = [
-    AppColors.green,
-    AppColors.green,
+    AppColors.greenLight,
+    AppColors.greenDark,
   ];
-  static List<Color> shimmerBaseColor = [
-    AppColors.neutralWhite,
-    AppColors.focusDark,
+  static List<Color> blue = [
+    AppColors.blueLight,
+    AppColors.blueDark,
   ];
-  static List<Color> shimmerHighlightColor = [
-    AppColors.neutralLight,
-    AppColors.neutralDark[80]!,
+  static List<Color> orange = [
+    AppColors.orangeLight,
+    AppColors.orangeDark,
+  ];
+  static List<Color> gray1 = [
+    AppColors.grayLight1,
+    AppColors.grayDark1,
+  ];
+  static List<Color> gray2 = [
+    AppColors.grayLight2,
+    AppColors.grayDark2,
+  ];
+  static List<Color> gray3 = [
+    AppColors.grayLight3,
+    AppColors.grayDark3,
+  ];
+  static List<Color> gray4 = [
+    AppColors.grayLight4,
+    AppColors.grayDark4,
+  ];
+  static List<Color> gray5 = [
+    AppColors.grayLight5,
+    AppColors.grayDark5,
+  ];
+  static List<Color> gray6 = [
+    AppColors.grayLight6,
+    AppColors.grayDark6,
+  ];
+
+  static List<Color> divider = [
+    AppColors.divider,
+    AppColors.divider,
+  ];
+
+  static List<Color> icon = [
+    AppColors.icon,
+    AppColors.icon,
+  ];
+
+  static List<Color> bottomNavigationBar = [
+    AppColors.black.withOpacity(0.3),
+    AppColors.black.withOpacity(0.3),
   ];
 }
