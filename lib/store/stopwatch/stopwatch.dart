@@ -61,12 +61,16 @@ abstract class _StopwatchStore with Store {
 
   @action
   Future<void> _init() async {
-    final x = await StorageUtils.getInitialTime();
-    if (x != null) {
-      _initialTime = x;
+    final initial = await StorageUtils.getInitialTime();
+    if (initial != null) {
+      _initialTime = initial;
     }
     _isRunning = await StorageUtils.getIsRunning();
     _laps = (await StorageUtils.getLaps()).asObservable();
+    final elapsed = await StorageUtils.getElapsedLaps();
+    if (elapsed != null) {
+      _elapsedLaps = elapsed;
+    }
     if (_isRunning) {
       _resume();
     }
@@ -141,13 +145,14 @@ abstract class _StopwatchStore with Store {
   }
 
   @action
-  Future<void> _reset() async {
+  Future<void> _reset() {
     _timer.cancel();
     _previouslyElapsed = Duration.zero;
     _currentlyElapsed = Duration.zero;
     _laps.clear();
     _elapsedLaps = Duration.zero;
     _elapsed = Duration.zero;
+    return StorageUtils.clear();
   }
 
   void _setupReactions() {
@@ -161,8 +166,12 @@ abstract class _StopwatchStore with Store {
         StorageUtils.setInitialTime,
       ),
       reaction(
-        (_) => _laps.iterator,
+        (_) => _laps.length,
         (_) => StorageUtils.setLaps(_laps),
+      ),
+      reaction(
+        (_) => _elapsedLaps,
+        (_) => StorageUtils.setElapsedLaps,
       ),
     ];
   }

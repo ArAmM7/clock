@@ -11,6 +11,7 @@ import '../models/list/list_dto.dart';
 class Preferences {
   static const initialTime = 'initialTime';
   static const isRunning = 'isRunning';
+  static const elapsedLaps = 'elapsedLaps';
   static const laps = 'laps';
 
   Preferences._();
@@ -54,10 +55,22 @@ class StorageUtils {
     return ListDto.fromJson(jsonDecode(list)).laps;
   }
 
-  // ignore: avoid_positional_boolean_parameters
   static Future<void> setLaps(List<Lap> laps) async {
     final json = ListDto(laps: laps).toJson();
     await _setString(Preferences.laps, jsonEncode(json));
+  }
+
+  static Future<void> setElapsedLaps(Duration _elapsedLaps) async {
+    return _setInt(Preferences.elapsedLaps, _elapsedLaps.inMilliseconds);
+  }
+
+  static Future<Duration?> getElapsedLaps() async {
+    final milliseconds = await _getInt(Preferences.elapsedLaps);
+    if (milliseconds != null) {
+      return Duration(milliseconds: milliseconds);
+    }
+
+    return null;
   }
 
   static Future<void> clear() async {
@@ -116,5 +129,16 @@ class StorageUtils {
     final prefs = await _sharedInstance;
 
     return prefs.getStringList(key);
+  }
+
+  static Future<void> _setInt(String key, int value) async {
+    final prefs = await _sharedInstance;
+    await prefs.setInt(key, value);
+  }
+
+  static Future<int?> _getInt(String key) async {
+    final prefs = await _sharedInstance;
+
+    return prefs.getInt(key);
   }
 }

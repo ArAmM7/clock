@@ -28,9 +28,11 @@ class AnalogStopwatch extends StatelessWidget {
     return Stack(
       children: [
         if (cat != Category.lap)
-          AnalogStopwatchFace(
-            radius: radius,
-            numOfTicks: numOfTicks,
+          RepaintBoundary(
+            child: AnalogStopwatchFace(
+              radius: radius,
+              numOfTicks: numOfTicks,
+            ),
           ),
         Positioned(
           left: radius,
@@ -57,11 +59,9 @@ class AnalogStopwatch extends StatelessWidget {
             left: 0,
             right: 0,
             top: radius * 1.3,
-            child: RepaintBoundary(
-              child: ElapsedTimeText(
-                elapsed: elapsed,
-                size: radius,
-              ),
+            child: ElapsedTimeText(
+              elapsed: elapsed,
+              size: radius,
             ),
           ),
       ],
