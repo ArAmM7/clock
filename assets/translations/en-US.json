@@ -13,7 +13,8 @@
     "reset": "Reset",
     "lap": "Lap",
     "lapNumbered": "Lap {val}",
-    "edit": "Edit"
+    "edit": "Edit",
+    "clock": "Clock"
   },
   "dashboardPagesEnum": {
     "STOPWATCH": "Stopwatch",

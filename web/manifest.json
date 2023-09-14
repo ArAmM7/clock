@@ -1,6 +1,6 @@
 {
-  "name": "stopwatch_app",
-  "short_name": "stopwatch_app",
+  "name": "clock_app",
+  "short_name": "clock_app",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

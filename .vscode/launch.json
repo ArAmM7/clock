@@ -5,19 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "stopwatch",
+            "name": "clock",
             "request": "launch",
             "type": "dart",
             "program": "${workspaceFolder}/lib/main.dart",
         },
         {
-            "name": "stopwatch (profile mode)",
+            "name": "clock (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "stopwatch (release mode)",
+            "name": "clock (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
