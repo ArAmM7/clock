@@ -45,7 +45,7 @@ class BottomNavigationBar extends HookWidget {
         notchMargin: -8,
         shape: const CircularNotchedRectangle(),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaY: 8, sigmaX: 8),
+          filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
           child: Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Row(

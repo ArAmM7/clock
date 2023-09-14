@@ -21,32 +21,30 @@ class LapListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width / 3;
-    return CupertinoListTile(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            'keywords.lapNumbered'.tr(namedArgs: {'val': lapNumber.toString()}),
-            style: TextStyle(
-              color: isFastest
-                  ? context.green
-                  : isSlowest
-                      ? context.red
-                      : context.mainText,
-            ),
-          ),
-          const Spacer(),
-          ElapsedTimeText(
-            elapsed: lapDuration,
-            size: size,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          'keywords.lapNumbered'.tr(namedArgs: {'val': lapNumber.toString()}),
+          style: context.theme.body.copyWith(
             color: isFastest
                 ? context.green
                 : isSlowest
                     ? context.red
                     : context.mainText,
           ),
-        ],
-      ),
-    );
+        ),
+        const Spacer(),
+        ElapsedTimeText(
+          elapsed: lapDuration,
+          size: size,
+          color: isFastest
+              ? context.green
+              : isSlowest
+                  ? context.red
+                  : context.mainText,
+        ),
+      ],
+    ).paddingSymmetric(horizontal: 8, vertical: 8);
   }
 }
