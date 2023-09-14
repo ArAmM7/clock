@@ -9,13 +9,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:stopwatch_app/pages/alarm_page/alarm_page.dart' as _i1;
-import 'package:stopwatch_app/pages/dashboard_page/dashboard_page.dart' as _i2;
-import 'package:stopwatch_app/pages/empty_page/empty_page.dart' as _i3;
-import 'package:stopwatch_app/pages/stopwatch_page/stopwatch_page.dart' as _i4;
-import 'package:stopwatch_app/pages/timer_page/timer_page.dart' as _i5;
-import 'package:stopwatch_app/pages/world_clock_page/world_clock_page.dart'
-    as _i6;
+import 'package:clock_app/pages/alarm_page/alarm_page.dart' as _i1;
+import 'package:clock_app/pages/dashboard_page/dashboard_page.dart' as _i2;
+import 'package:clock_app/pages/empty_page/empty_page.dart' as _i3;
+import 'package:clock_app/pages/stopwatch_page/stopwatch_page.dart' as _i4;
+import 'package:clock_app/pages/timer_page/timer_page.dart' as _i5;
+import 'package:clock_app/pages/world_clock_page/world_clock_page.dart' as _i6;
 
 abstract class $Router extends _i7.RootStackRouter {
   $Router({super.navigatorKey});
