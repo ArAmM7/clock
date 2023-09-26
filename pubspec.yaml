@@ -39,7 +39,7 @@ dependencies:
   dots_indicator: ^3.0.0
   device_preview: ^1.1.0
   mobx: ^2.2.0
-  flutter_mobx: ^2.0.6+5
+  flutter_mobx: ^2.1.0
   get_it: ^7.6.4
   freezed: ^2.4.1
   freezed_annotation: ^2.4.1
@@ -48,7 +48,7 @@ dependencies:
   get_storage: ^2.1.1
   shared_preferences: ^2.2.1
   flutter_scale_tap: ^1.0.5
-  uuid: ^4.0.0
+  uuid: ^4.1.0
   gap: ^3.0.1
   auto_route: ^7.8.3
   easy_localization: ^3.0.3
@@ -67,8 +67,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.3
   build_runner: ^2.4.6
-  flutter_gen_runner: ^5.3.1
-  mobx_codegen: ^2.3.0
+  flutter_gen_runner: ^5.3.2
+  mobx_codegen: ^2.4.0
   json_serializable: ^6.7.1
   auto_route_generator: ^7.3.1
   theme_tailor: ^2.0.0
