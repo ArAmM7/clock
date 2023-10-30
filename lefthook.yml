@@ -1,9 +1,0 @@
-pre-commit:
-  commands:
-    pretty:
-      glob: '*.dart'
-      exclude: '*.g.dart|*.freezed.dart'
-      run: echo $PATH && flutter packages pub run build_runner build --delete-conflicting-outputs
-        && flutter analyze --no-fatal-infos
-        && flutter format {staged_files}
-        && git add {staged_files}
