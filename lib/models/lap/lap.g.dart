@@ -6,12 +6,12 @@ part of 'lap.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Lap _$$_LapFromJson(Map json) => _$_Lap(
+_$LapImpl _$$LapImplFromJson(Map json) => _$LapImpl(
       id: json['id'] as String,
       duration: Duration(microseconds: json['duration'] as int),
     );
 
-Map<String, dynamic> _$$_LapToJson(_$_Lap instance) => <String, dynamic>{
+Map<String, dynamic> _$$LapImplToJson(_$LapImpl instance) => <String, dynamic>{
       'id': instance.id,
       'duration': instance.duration.inMicroseconds,
     };
