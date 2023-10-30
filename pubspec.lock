@@ -359,10 +359,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mobx
-      sha256: "2aa91babd4b66a7345675f67e3733a35ec6da3f42ad86799fce5363a322944be"
+      sha256: "2ba0aa5a42811eaaeff2e35626689cf2b8a3869907d0e8889c914f2c95d8fd76"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   flutter_native_splash:
     dependency: "direct main"
     description:
