@@ -60,20 +60,21 @@ class _$ListDtoCopyWithImpl<$Res, $Val extends ListDto>
 }
 
 /// @nodoc
-abstract class _$$_ListDtoCopyWith<$Res> implements $ListDtoCopyWith<$Res> {
-  factory _$$_ListDtoCopyWith(
-          _$_ListDto value, $Res Function(_$_ListDto) then) =
-      __$$_ListDtoCopyWithImpl<$Res>;
+abstract class _$$ListDtoImplCopyWith<$Res> implements $ListDtoCopyWith<$Res> {
+  factory _$$ListDtoImplCopyWith(
+          _$ListDtoImpl value, $Res Function(_$ListDtoImpl) then) =
+      __$$ListDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Lap> laps});
 }
 
 /// @nodoc
-class __$$_ListDtoCopyWithImpl<$Res>
-    extends _$ListDtoCopyWithImpl<$Res, _$_ListDto>
-    implements _$$_ListDtoCopyWith<$Res> {
-  __$$_ListDtoCopyWithImpl(_$_ListDto _value, $Res Function(_$_ListDto) _then)
+class __$$ListDtoImplCopyWithImpl<$Res>
+    extends _$ListDtoCopyWithImpl<$Res, _$ListDtoImpl>
+    implements _$$ListDtoImplCopyWith<$Res> {
+  __$$ListDtoImplCopyWithImpl(
+      _$ListDtoImpl _value, $Res Function(_$ListDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -81,7 +82,7 @@ class __$$_ListDtoCopyWithImpl<$Res>
   $Res call({
     Object? laps = null,
   }) {
-    return _then(_$_ListDto(
+    return _then(_$ListDtoImpl(
       laps: null == laps
           ? _value._laps
           : laps // ignore: cast_nullable_to_non_nullable
@@ -92,11 +93,11 @@ class __$$_ListDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ListDto implements _ListDto {
-  const _$_ListDto({final List<Lap> laps = const []}) : _laps = laps;
+class _$ListDtoImpl implements _ListDto {
+  const _$ListDtoImpl({final List<Lap> laps = const []}) : _laps = laps;
 
-  factory _$_ListDto.fromJson(Map<String, dynamic> json) =>
-      _$$_ListDtoFromJson(json);
+  factory _$ListDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ListDtoImplFromJson(json);
 
   final List<Lap> _laps;
   @override
@@ -116,7 +117,7 @@ class _$_ListDto implements _ListDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListDto &&
+            other is _$ListDtoImpl &&
             const DeepCollectionEquality().equals(other._laps, _laps));
   }
 
@@ -128,26 +129,26 @@ class _$_ListDto implements _ListDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListDtoCopyWith<_$_ListDto> get copyWith =>
-      __$$_ListDtoCopyWithImpl<_$_ListDto>(this, _$identity);
+  _$$ListDtoImplCopyWith<_$ListDtoImpl> get copyWith =>
+      __$$ListDtoImplCopyWithImpl<_$ListDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListDtoToJson(
+    return _$$ListDtoImplToJson(
       this,
     );
   }
 }
 
 abstract class _ListDto implements ListDto {
-  const factory _ListDto({final List<Lap> laps}) = _$_ListDto;
+  const factory _ListDto({final List<Lap> laps}) = _$ListDtoImpl;
 
-  factory _ListDto.fromJson(Map<String, dynamic> json) = _$_ListDto.fromJson;
+  factory _ListDto.fromJson(Map<String, dynamic> json) = _$ListDtoImpl.fromJson;
 
   @override
   List<Lap> get laps;
   @override
   @JsonKey(ignore: true)
-  _$$_ListDtoCopyWith<_$_ListDto> get copyWith =>
+  _$$ListDtoImplCopyWith<_$ListDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

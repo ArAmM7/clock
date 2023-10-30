@@ -65,18 +65,18 @@ class _$LapCopyWithImpl<$Res, $Val extends Lap> implements $LapCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_LapCopyWith<$Res> implements $LapCopyWith<$Res> {
-  factory _$$_LapCopyWith(_$_Lap value, $Res Function(_$_Lap) then) =
-      __$$_LapCopyWithImpl<$Res>;
+abstract class _$$LapImplCopyWith<$Res> implements $LapCopyWith<$Res> {
+  factory _$$LapImplCopyWith(_$LapImpl value, $Res Function(_$LapImpl) then) =
+      __$$LapImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Duration duration});
 }
 
 /// @nodoc
-class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$_Lap>
-    implements _$$_LapCopyWith<$Res> {
-  __$$_LapCopyWithImpl(_$_Lap _value, $Res Function(_$_Lap) _then)
+class __$$LapImplCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$LapImpl>
+    implements _$$LapImplCopyWith<$Res> {
+  __$$LapImplCopyWithImpl(_$LapImpl _value, $Res Function(_$LapImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$_Lap>
     Object? id = null,
     Object? duration = null,
   }) {
-    return _then(_$_Lap(
+    return _then(_$LapImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -100,10 +100,11 @@ class __$$_LapCopyWithImpl<$Res> extends _$LapCopyWithImpl<$Res, _$_Lap>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Lap implements _Lap {
-  const _$_Lap({required this.id, required this.duration});
+class _$LapImpl implements _Lap {
+  const _$LapImpl({required this.id, required this.duration});
 
-  factory _$_Lap.fromJson(Map<String, dynamic> json) => _$$_LapFromJson(json);
+  factory _$LapImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LapImplFromJson(json);
 
   @override
   final String id;
@@ -119,7 +120,7 @@ class _$_Lap implements _Lap {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Lap &&
+            other is _$LapImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.duration, duration) ||
                 other.duration == duration));
@@ -132,12 +133,12 @@ class _$_Lap implements _Lap {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LapCopyWith<_$_Lap> get copyWith =>
-      __$$_LapCopyWithImpl<_$_Lap>(this, _$identity);
+  _$$LapImplCopyWith<_$LapImpl> get copyWith =>
+      __$$LapImplCopyWithImpl<_$LapImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LapToJson(
+    return _$$LapImplToJson(
       this,
     );
   }
@@ -145,9 +146,9 @@ class _$_Lap implements _Lap {
 
 abstract class _Lap implements Lap {
   const factory _Lap(
-      {required final String id, required final Duration duration}) = _$_Lap;
+      {required final String id, required final Duration duration}) = _$LapImpl;
 
-  factory _Lap.fromJson(Map<String, dynamic> json) = _$_Lap.fromJson;
+  factory _Lap.fromJson(Map<String, dynamic> json) = _$LapImpl.fromJson;
 
   @override
   String get id;
@@ -155,5 +156,6 @@ abstract class _Lap implements Lap {
   Duration get duration;
   @override
   @JsonKey(ignore: true)
-  _$$_LapCopyWith<_$_Lap> get copyWith => throw _privateConstructorUsedError;
+  _$$LapImplCopyWith<_$LapImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -6,14 +6,14 @@ part of 'list_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ListDto _$$_ListDtoFromJson(Map json) => _$_ListDto(
+_$ListDtoImpl _$$ListDtoImplFromJson(Map json) => _$ListDtoImpl(
       laps: (json['laps'] as List<dynamic>?)
               ?.map((e) => Lap.fromJson(Map<String, Object?>.from(e as Map)))
               .toList() ??
           const [],
     );
 
-Map<String, dynamic> _$$_ListDtoToJson(_$_ListDto instance) =>
+Map<String, dynamic> _$$ListDtoImplToJson(_$ListDtoImpl instance) =>
     <String, dynamic>{
       'laps': instance.laps.map((e) => e.toJson()).toList(),
     };
